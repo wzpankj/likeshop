@@ -34,7 +34,8 @@ class Order extends Api
         $post = $this->request->post();
         $post['user_id'] = $this->user_id;
         $post['client'] = $this->client;
-		// DB::name('debug_log')->insert(['spec'=> "113".serialize(json_encode($post))]);
+        //test
+		//DB::name('debug_log')->insert(['spec'=> "37".serialize(json_encode($post))]);
         (new OrderValidate())->goCheck('sumbitOrder',$post);
         $order = OrderLogic::sumbitOrder($post);
         if (false === $order) {
