@@ -1,0 +1,4 @@
+<?php
+//000000086400
+ exit();?>
+a:24:{s:2:"id";i:3;s:2:"sn";s:8:"64928948";s:8:"nickname";s:3:"一";s:6:"avatar";s:77:"http://cdiancan.net/uploads/user/avatar/41e12736716b13f75648b35af9ab0ce9.jpeg";s:6:"mobile";s:0:"";s:3:"sex";i:0;s:8:"birthday";N;s:10:"user_money";s:8:"49997.00";s:18:"total_order_amount";s:4:"3.00";s:21:"total_recharge_amount";s:4:"0.00";s:7:"account";s:0:"";s:8:"password";N;s:12:"pay_password";N;s:4:"salt";s:0:"";s:10:"login_time";s:19:"2023-05-10 20:57:32";s:8:"login_ip";s:9:"127.0.0.1";s:7:"disable";i:0;s:6:"client";i:1;s:6:"remark";s:0:"";s:11:"create_time";s:19:"2023-04-18 09:23:16";s:11:"update_time";s:19:"2023-04-25 22:19:32";s:3:"del";i:0;s:8:"integral";s:4:"0.96";s:5:"token";s:32:"ec90a52256df88e2530dec6b6321c9a7";}

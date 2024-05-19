@@ -1,0 +1,37 @@
+
+
+{layout name="layout2" /}
+<style>
+  .layui-form-label {
+    color: #6a6f6c;
+    width: 140px;
+  }
+  .layui-input-block{
+    margin-left:170px;
+  }
+  .reqRed::before {
+    content: '*';
+    color: red;
+  }
+</style>
+<div class="layui-form" style="padding: 20px 30px 0 0;">
+  <div class="layui-form-item">
+    <label class="layui-form-label reqRed">分类名称：</label>
+    <div class="layui-input-inline">
+      <input type="text" name="name" lay-verify="required" lay-verType="tips" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item layui-hide">
+      <input type="button" lay-submit lay-filter="add-submit" id="add-submit" value="确认">
+  </div>
+</div>
+<script>
+  layui.config({
+    version:"{$front_version}",
+    base: '/static/lib' //静态资源所在路径
+  }).use(['form'], function(){
+    var $ = layui.$
+    ,form = layui.form;
+
+  })
+</script>

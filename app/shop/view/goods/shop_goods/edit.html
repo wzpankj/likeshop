@@ -1,0 +1,82 @@
+{layout name="layout2" /}
+
+<link rel="stylesheet" href="/static/admin/css/goods.css" media="all">
+
+<div class="layui-tab layui-tab-card">
+    <!--顶部切换页-->
+    <ul class="layui-tab-title">
+        <li class="goods-tab layui-this" style="color: #6a6f6c">基础设置</li>
+        <li class="goods-tab" style="color: #6a6f6c">规格型号</li>
+        <li class="goods-tab" style="color: #6a6f6c">销售设置</li>
+    </ul>
+
+    <!--切换内容-->
+    <div class="layui-tab-content layui-form">
+        <!--基础信息-->
+        {include file="goods/shop_goods/goods_base" /}
+        <!--规格型号-->
+        {include file="goods/shop_goods/goods_spec" /}
+        <!--销售设置-->
+        {include file="goods/shop_goods/goods_sale_setting" /}
+        <div class="layui-form-item layui-hide">
+            <input type="hidden" value="{$info.shop_goods_id}" name="goods_id">
+            <input type="button" lay-submit lay-filter="edit-submit" id="edit-submit" value="确认">
+        </div>
+    </div>
+</div>
+
+<script src="__PUBLIC__/static/common/js/array.js"></script>
+
+<script>
+    var dragstart = 0;
+    var spec_table_data = [];
+
+    layui.config({
+        version:"{$front_version}",
+        base: '/static/lib/'
+    }).extend({
+        likeedit: 'likeedit/likeedit'
+    }).use(['table', 'form', 'element', 'likeedit'], function() {
+        var form = layui.form
+            ,$ = layui.$
+            , element = layui.element
+            , likeedit = layui.likeedit;
+
+
+        //------------------------------------------数据验证 begin -------------------------------
+        function switchTab(number) {
+            $('.goods-tab').removeClass('layui-this');
+            $('.goods-content').removeClass('layui-show');
+            $('.goods-tab').eq(number).addClass('layui-this');
+            $('.goods-content').eq(number).addClass('layui-show');
+        }
+
+        form.verify({
+            price: function (value, item) {
+                if (value && value < 0) {
+                    switchTab($(item).attr('switch-tab'));
+                    return '价格必须大于等于0';
+                }
+            },
+            stock: function (value, item) {
+                if (value && value <= 0) {
+                    switchTab($(item).attr('switch-tab'));
+                    return '库存大于0';
+                }
+            },
+        });
+        //------------------------------------------数据验证 end ----------------------------------
+        //批量填充
+        $(document).on('click', '.batch-spec-content', function () {
+            var title = $(this).text();
+            var input_name = $(this).attr('input-name');
+            layer.prompt({
+                formType: 3
+                , title: '批量填写' + title
+            }, function (value, index, elem) {
+                $('.'+input_name).val(value);
+                layer.close(index);
+            });
+        });
+    });
+</script>

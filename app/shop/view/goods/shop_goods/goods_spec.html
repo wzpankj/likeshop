@@ -1,0 +1,86 @@
+<div class="layui-tab-item goods-content">
+    <!--规格型号-->
+    <div class="layui-card-body" pad15>
+        <div lay-filter="">
+
+            <!-- 统一规格 -->
+            <div class="layui-form-item" id="one-spec-lists">
+
+                <!-- 批量 -->
+                <div class="layui-form-item" id="more-spec-lists">
+                    <div class="layui-input-block goods-spec-div">
+                        <div class="batch-div add-more-spec" {if isset($status) && $status == 1} style="display: none"{/if}><span class="batch-spec-title">批量设置：</span>
+                            <div>
+                                <!-- <span class="batch-spec-content click-a" input-name="market_price">市场价</span> -->
+                                <span class="batch-spec-content click-a" input-name="kucun">门店库存</span>
+                            </div>
+                        </div>
+                        <table id="more-spec-lists-table" class="layui-table spec-lists-table" lay-size="sm">
+                        </table>
+                    </div>
+                </div>
+                <label class="layui-form-label">规格明细：</label>
+                <div class="layui-input-block goods-spec-div">
+                    <table id="one-spec-lists-table" class="layui-table spec-lists-table" lay-size="sm">
+                        <thead>
+                        <tr style="background-color: #f3f5f9">
+                            <th style="width: 100px"><span class="form-label-asterisk">*</span>商品规格</th>
+                            <th><span class="form-label-asterisk">*</span>市场价(元)</th>
+                            <th><span class="form-label-asterisk">*</span>价格(元)</th>
+                            <th><span class="form-label-asterisk">*</span>门店库存</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {foreach $info.goods_item as $key=>$val}
+                        <tr>
+                            <input type="hidden" name="goods_item[{$key}][id]" value="{$val.id}">
+                            <td><input type="text" class="layui-input"
+                                       name="spec_value_str" value="{$val.spec_value_str}" disabled></td>
+                            <td><input type="number" class="layui-input"
+                                       name="market_price" value="{$val.market_price}" disabled></td>
+                            <td><input type="number" class="layui-input"
+                                       lay-verify="price_required|price"
+                                       autocomplete="off" switch-tab="1" verify-msg="请输入价格"
+                                       name="goods_item[{$key}][price]" value="{$val.price}" {if $info.pricing_policy != 2} disabled{/if}></td>
+                            <td><input type="number" class="layui-input kucun"
+                                       lay-verify="stock_required|stock"
+                                       autocomplete="off" switch-tab="1" verify-msg="请输入库存"
+                                       name="goods_item[{$key}][stock]" value="{$val.stock}"></td>
+                        </tr>
+                        {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 100px;">
+            <!-- 物料项 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">商品物料：</label>
+                <div class="layui-input-block goods-material-div" id="goods-material-project">
+                    {foreach $info.goods_material_category as $value}
+                    <div class="goods-spec-div goods-material" autocomplete="off" style="background-color: white;padding: 20px;margin-bottom: 20px;">
+                        <div class="layui-form-item" style="clear: unset">
+                            <div class="layui-input-inline select-material">
+                                <select name="material_category_id[]" lay-filter="material_category" lay-verify="custom_required"
+                                        lay-verType="tips" switch-tab="0" verify-msg="请选择物料分类" class="material-category" style="width: 190px;height: 38px;" disabled>
+                                    <option value="{$value.category_id}">{$value.name}</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline more-material">
+                                <input type="checkbox" name="choice[]" lay-skin="primary" title="支持多选" class="choice" {if $value.all_choice == 1}checked{/if} disabled>
+                            </div>
+                        </div>
+                        <div class="checkbox">
+                            {foreach $value.goods_material as $key=>$val}
+                            <input type="checkbox" name="material[]" lay-skin="primary" value="{$val.id}" title="{$val.name}" checked disabled>
+                            {/foreach}
+                        </div>
+                    </div>
+                    {/foreach}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

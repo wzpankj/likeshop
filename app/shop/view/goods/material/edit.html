@@ -1,0 +1,106 @@
+
+
+{layout name="layout2" /}
+<style>
+  .layui-form-label {
+    color: #6a6f6c;
+    width: 140px;
+  }
+  .layui-input-block{
+    margin-left:170px;
+  }
+  .reqRed::before {
+    content: '*';
+    color: red;
+  }
+</style>
+<div class="layui-form material-tab" style="padding: 20px 30px 0 0;">
+
+  <input type="hidden" name="id" value="{$detail.id}">
+
+  <div class="layui-form-item">
+    <label class="layui-form-label reqRed">物料编号：</label>
+    <div class="layui-input-inline">
+      <input type="text" name="code" lay-verify="required" lay-verType="tips" autocomplete="off" class="layui-input" value="{$detail.code}" disabled>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label"></label>
+      <span style="color: #a3a3a3;font-size: 9px">物料编号，必填</span>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label reqRed">物料名称：</label>
+    <div class="layui-input-inline">
+      <input type="text" name="name" lay-verify="required" lay-verType="tips" autocomplete="off" class="layui-input" value="{$detail.name}" disabled>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label"></label>
+      <span style="color: #a3a3a3;font-size: 9px">物料名称必填，最多64个字符</span>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label reqRed">物料分类：</label>
+    <div class="layui-input-inline">
+      <select name="material_category_id" lay-filter="material_category_id" lay-verify="custom_required"
+              lay-verType="tips" switch-tab="0" verify-msg="请选择分类" disabled>
+        <option value="{$detail.material_category_id}">{$detail.material_category}</option>
+        {/foreach}
+      </select>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label reqRed">物料价格：</label>
+    <div class="layui-input-inline">
+      <input type="number" name="price" lay-verify="required|price" lay-verType="tips" autocomplete="off" class="layui-input" style="width: 100px;display: inline-block" value="{$detail.price}" disabled><span>元</span>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label reqRed">门店物料价格：</label>
+    <div class="layui-input-inline">
+      <input type="number" name="shop_price" lay-verify="required|shop_price" lay-verType="tips" autocomplete="off" class="layui-input" style="width: 100px;display: inline-block" value="{$detail.shop_price}"><span>元</span>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">排序：</label>
+    <div class="layui-input-inline">
+      <input type="number" name="sort" autocomplete="off" class="layui-input" value="{$detail.sort}" disabled>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label"></label>
+      <span style="color: #a3a3a3;font-size: 9px">排序值必须为整数；数值越小，越靠前</span>
+    </div>
+  </div>
+  <div class="layui-form-item layui-hide">
+    <input type="button" lay-submit lay-filter="edit-submit" id="edit-submit" value="确认">
+  </div>
+</div>
+<script>
+  layui.config({
+    version:"{$front_version}",
+    base: '/static/lib' //静态资源所在路径
+  }).use(['form'], function(){
+    var $ = layui.$
+            ,form = layui.form;
+
+    function switchTab(number) {
+      $('.material-tab').removeClass('layui-show');
+      $('.material-tab').eq(number).addClass('layui-show');
+    }
+
+    form.verify({
+      price: function (value, item) {
+        if (value && value < 0) {
+          switchTab($(item).attr('switch-tab'));
+          return '物料价格不能小于0';
+        }
+      }
+      shop_price: function (value, item) {
+        if (value && value < 0) {
+          switchTab($(item).attr('switch-tab'));
+          return '门店物料价格不能小于0';
+        }
+      }
+    });
+
+  })
+</script>

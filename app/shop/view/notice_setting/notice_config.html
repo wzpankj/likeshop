@@ -1,0 +1,64 @@
+{layout name="layout1" /}
+<style>
+    .layui-form-label {
+        width: 120px;
+    }
+</style>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <!--            表单区域-->
+            <div class="layui-form" style="margin-top: 15px;">
+                <div class="layui-form-item">
+                    <lable class="layui-form-label">外卖订单通知:</lable>
+                    <div class="layui-input-block">
+                        <input type="radio" name="take_out_notice" value="0" title="关闭" {if $config.take_out_notice ==0 }checked{/if} />
+                        <input type="radio" name="take_out_notice" value="1" title="开启" {if $config.take_out_notice == 1 }checked{/if} />
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <lable class="layui-form-label"></lable>
+                    <div class="layui-input-block">
+                        <span class="layui-word-aux">设置是否接收外卖订单通知</span>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <lable class="layui-form-label"></lable>
+                    <div class="layui-input-block">
+                        <button class="layui-btn layui-btn-normal" lay-submit lay-filter="set">确定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.config({
+        version:"{$front_version}",
+        base: '/static/lib/' //静态资源所在路径
+    }).use(['form','element'], function(){
+        var $ = layui.$,form = layui.form,element = layui.element;
+
+        form.on('submit(set)', function(data) {
+            like.ajax({
+                url:'{:url("NoticeSetting/noticeConfig")}',
+                data: data.field,
+                type:"post",
+                success:function(res)
+                {
+                    if(res.code == 1)
+                    {
+                        layui.layer.msg(res.msg, {
+                            offset: '15px'
+                            , icon: 1
+                            , time: 1000
+                        });
+                    }
+                }
+            });
+        });
+
+    });
+</script>

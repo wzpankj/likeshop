@@ -1,0 +1,81 @@
+{layout name="layout2" /}
+<style>
+  .layui-form-label {
+    color: #6a6f6c;
+    width: 140px;
+  }
+  .layui-input-block{
+    margin-left:170px;
+  }
+  .reqRed::before {
+    content: '*';
+    color: red;
+  }
+</style>
+<div class="layui-form" lay-filter="layuiadmin-form-category" id="layuiadmin-form-category" style="padding: 20px 30px 0 0;">
+  <input type="hidden" name="id" value="{$detail.id}" />
+  <div class="layui-form-item">
+    <label class="layui-form-label">订单应付金额：</label>
+    <div class="layui-input-inline">
+      <input type="text" value="￥{$detail.order_amount}" class="layui-input" disabled style="border: unset;background: unset">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">已退金额：</label>
+    <div class="layui-input-inline">
+      <input type="text" value="￥{$detail.refund_amount}" class="layui-input" disabled style="border: unset;background: unset">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">剩余可退金额：</label>
+    <div class="layui-input-inline">
+      <input type="text" name="surplus_refund_amount" id="surplus_refund_amount" value="￥{$detail.surplus_refund_amount}" class="layui-input" disabled style="border: unset;background: unset">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label reqRed">退款类型：</label>
+    <div class="layui-input-inline" style="width: 225px">
+      <input type="radio" name="refund_type" value="1" title="整单退款" checked="" lay-filter="radio">
+      <input type="radio" name="refund_type" value="5" title="其他退款" lay-filter="radio">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label reqRed">退款路径：</label>
+    <div class="layui-input-inline" style="width: 225px">
+      <input type="radio" name="refund_way" value="0" title="原路退款" checked="">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label reqRed">退款金额：</label>
+    <div class="layui-input-inline">
+      <input type="number" name="refund_amount" lay-verify="required" value="{$detail.surplus_refund_amount}" lay-verType="tips" autocomplete="off" class="layui-input" style="width: 90%;display: inline-block" id="refund_amount" disabled>元
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label reqRed">退款备注：</label>
+    <div class="layui-input-inline">
+      <textarea name="refund_remark" autocomplete="off" class="layui-textarea" lay-verify="required"></textarea>
+    </div>
+  </div>
+  <div class="layui-form-item layui-hide">
+      <input type="button" lay-submit lay-filter="refund-submit" id="refund-submit" value="确认">
+  </div>
+</div>
+<script>
+  layui.config({
+    version:"{$front_version}",
+    base: '/static/lib' //静态资源所在路径
+  }).use(['form'], function(){
+    var $ = layui.$
+    ,form = layui.form;
+
+    var surplus_refund_amount = $('#refund_amount').val();
+    form.on('radio(radio)', function(obj){
+      if (obj.value > 1) {
+        $("#refund_amount").removeAttr("disabled");
+      }else {
+        $("#refund_amount").attr("disabled",'disabled').val(surplus_refund_amount);
+      }
+    });
+  })
+</script>

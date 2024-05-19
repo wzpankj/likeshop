@@ -1,0 +1,398 @@
+{layout name="layout1" /}
+<style>
+    .layui-table-cell {
+        height:auto;
+    }
+    .goods-content>div:not(:last-of-type) {
+        border-bottom:1px solid #DCDCDC;
+    }
+    .goods-data::after{
+        display: block;
+        content: '';
+        clear: both;
+    }
+    .goods_name_hide{
+        overflow:hidden;
+        white-space:nowrap;
+        text-overflow: ellipsis;
+    }
+    .operation-btn {
+        margin: 5px;
+    }
+    .table-operate{
+        text-align: left;
+        font-size:14px;
+        padding:0 5px;
+        height:auto;
+        overflow:visible;
+        text-overflow:inherit;
+        white-space:normal;
+        word-break: break-all;
+    }
+</style>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body">
+        <div class="layui-collapse like-layui-collapse" lay-accordion="" style="border:1px dashed #c4c4c4">
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title like-layui-colla-title" style="background-color: #fff">操作提示</h2>
+                <div class="layui-colla-content layui-show">
+                    <p>*退款记录列表。</p>
+                    <p>*状态有退款中，退款成功，退款失败。</p>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="layui-tab layui-tab-card" lay-filter="tab-all">
+
+            <ul class="layui-tab-title">
+                <li data-type='0' class="layui-this">全部（{$statistics.all}）</li>
+                <li data-type="1">退款中（{$statistics.wait_refund}）</li>
+                <li data-type="2">退款成功（{$statistics.refund_success}）</li>
+                <li data-type="3">退款失败（{$statistics.refund_fail}）</li>
+            </ul>
+
+            <div class="layui-card-body layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-row">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">退款信息:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="refund_sn" id="refund_sn" placeholder="请输入退款编号查询"
+                                       autocomplete="off" class="layui-input" style="width: 188px;">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">订单信息:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="order_sn" id="order_sn" placeholder="请输入订单编号查询"
+                                       autocomplete="off" class="layui-input" style="width: 188px;">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">退款商品:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="goods_info" id="goods_info" placeholder="请输入商品名称/编号查询"
+                                       autocomplete="off" class="layui-input" style="width: 188px;">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">退款类型:</label>
+                            <div class="layui-input-block">
+                                <select name="refund_type" id="refund_type">
+                                    <option value="">全部</option>
+                                    {foreach $refund_type as $item => $val}
+                                    <option value="{$item}">{$val}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-row">
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">退款路径:</label>
+                            <div class="layui-input-block">
+                                <select name="refund_way" id="refund_way">
+                                    <option value="">全部</option>
+                                    {foreach $refund_way as $item => $val}
+                                    <option value="{$item}">{$val}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">退款时间:</label>
+                            <div class="layui-input-inline">
+                                <div class="layui-input-inline">
+                                    <input type="text" name="start_time" class="layui-input" id="start_time"
+                                           placeholder="" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="layui-input-inline" style="margin-right: 5px;width: 20px;">
+                                <label class="layui-form-mid">至</label>
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="end_time" class="layui-input" id="end_time"
+                                       placeholder="" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <button class="layui-btn layui-btn-sm layuiadmin-btn-ad {$view_theme_color}" lay-submit
+                                    lay-filter="search">查询
+                            </button>
+                            <button class="layui-btn layui-btn-sm layuiadmin-btn-ad layui-btn-primary" lay-submit
+                                    lay-filter="export">导出
+                            </button>
+                            <button class="layui-btn layui-btn-sm layuiadmin-btn-ad layui-btn-primary " lay-submit
+                                    lay-filter="clear-search">重置
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-tab-item layui-show">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+
+                        <table id="like-table-lists" lay-filter="like-table-lists"></table>
+
+                        <script type="text/html" id="image">
+                            <img src="{{d.image}}" style="height:80px;width: 80px" class="image-show">
+                        </script>
+
+                        <!--门店信息-->
+                        <script type="text/html" id="shop">
+                            <div>
+                                <p>{{d.shop_sn}} — {{d.shop_name}}</p>
+                            </div>
+                        </script>
+
+                        <!--退款信息-->
+                        <script type="text/html" id="refund">
+                            <div style="text-align: left">
+                                <p>退款编号:{{d.refund_sn}}</p>
+                                <p>退款状态:{{d.refund_status_desc}}</p>
+                                <p>退款时间:{{d.refund_time}}</p>
+                            </div>
+                        </script>
+
+                        <!--订单信息-->
+                        <script type="text/html" id="order">
+                            <div style="text-align: left">
+                                <p>订单编号:{{d.order_sn}}</p>
+                                <p>下单时间:{{d.order_time}}</p>
+                            </div>
+                        </script>
+
+                        <!--退款商品-->
+                        <script type="text/html" id="goods">
+                            <div class="goods-content">
+                                {{#  layui.each(d.order_goods, function(index, item){ }}
+                                <div style="text-align: left;" class="goods-data">
+                                    <div>
+                                        <!--                                        <img src="{{ item.image }}" style="height:80px;width: 80px;margin-right: 10px;" class="image-show layui-col-md4">-->
+                                        <div class="layui-input-inline layui-col-md8" style="width: 100%">
+                                            <span class="layui-col-md7 goods_name_hide" style="width: 100%">{{ item.goods_name }}</span>
+                                            <span class="layui-col-md7 goods_name_hide" style="width: 100%">
+                                                <span style="width: 245px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;float: left;display: block;">{{ item.spec_value }}</span>
+                                                <span style="float: right">x{{ item.goods_num }}</span>
+                                            </span>
+                                        </div>
+                                        <div style="clear: both"></div>
+                                    </div>
+
+                                    <!--                                    <div style="display: block">-->
+                                    <!--                                        <span>单价:{{ item.goods_price }}</span>-->
+                                    <!--                                        <span>实付:{{ item.goods_price }}</span>-->
+                                    <!--                                        <span>数量:{{ item.goods_num }}</span>-->
+                                    <!--                                        <span>总计实付:{{ item.total_price }}</span>-->
+                                    <!--                                    </div>-->
+                                </div>
+                                {{#  }); }}
+                            </div>
+                        </script>
+
+                        <!--到账信息-->
+                        <script type="text/html" id="account_info">
+                            <div style="text-align: left">
+                                <p>到账时间:{{d.arrival_time}}</p>
+                                <p>退款流水账号:{{d.transaction_id}}</p>
+                            </div>
+                        </script>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+      layui.config({
+        version:"{$front_version}",
+        base: '/static/lib/' //静态资源所在路径
+    }).use(['form'], function(){
+        var $ = layui.$
+            , form = layui.form
+            , table = layui.table
+            , element = layui.element
+            , laydate = layui.laydate;
+
+        //图片放大
+        $(document).on('click', '.image-show', function () {
+            var src = $(this).attr('src');
+            like.showImg(src,600);
+        });
+
+        //监听搜索
+        form.on('submit(search)', function (data) {
+            var field = data.field;
+            //执行重载
+            table.reload('like-table-lists', {
+                where: field,
+                page: {
+                    curr: 1
+                }
+            });
+            updateTabNumber(field);
+        });
+        //清空查询
+        form.on('submit(clear-search)', function () {
+            $('#refund_sn').val('');
+            $('#order_sn').val('');
+            $('#goods_info').val('');
+            $('#refund_type').val('');
+            $('#refund_way').val('');
+            $('#start_time').val('');
+            $('#end_time').val('');
+            form.render('select');
+            //刷新列表
+            table.reload('like-table-lists', {
+                where: [],
+                page: {
+                    curr: 1
+                }
+            });
+        });
+
+        //日期时间范围
+        laydate.render({
+            elem: '#start_time'
+            ,type: 'datetime'
+            ,trigger: 'click'
+            ,done: function (value, date, endDate) {
+                var startDate = new Date(value).getTime();
+                var endTime = new Date($('#end_time').val()).getTime();
+                if (endTime < startDate) {
+                    layer.msg('结束时间不能小于开始时间');
+                    $('#start_time').val($('#end_time').val());
+                }
+            }
+        });
+
+        laydate.render({
+            elem: '#end_time'
+            ,type: 'datetime'
+            ,trigger: 'click'
+            ,done: function (value, date, endDate) {
+                var startDate = new Date($('#start_time').val()).getTime();
+                var endTime = new Date(value).getTime();
+                if (endTime < startDate) {
+                    layer.msg('结束时间不能小于开始时间');
+                    $('#end_time').val($('#start_time').val());
+                }
+            }
+        });
+
+        //获取列表
+        getList('');
+        //切换列表
+        element.on('tab(tab-all)', function (data) {
+            $('#refund_sn').val('');
+            $('#order_sn').val('');
+            $('#goods_info').val('');
+            $('#refund_type').val('');
+            $('#refund_way').val('');
+            $('#start_time').val('');
+            $('#end_time').val('');
+            form.render('select');
+            var type = $(this).attr('data-type');
+            getList(type);
+            if (type !== ''){
+                $('.order_status').hide();
+            }else {
+                $('.order_status').show();
+            }
+        });
+
+        function getList(type) {
+            table.render({
+                elem: '#like-table-lists'
+                , url: '{:url("order.refund_log/lists")}?type=' + type
+                , cols: [[
+                    {field:'order_refund_id',title: 'ID',width:60,align: 'center'}
+                    , {field: 'shop', title: '门店信息', align: 'center',templet:'#shop',width:230}
+                    , {field: 'refund', title: '退款信息', align: 'center',templet:'#refund',width:250}
+                    , {field: 'order', title: '订单信息', templet:'#order',width:250}
+                    , {field: 'goods', title: '退款商品', align: 'center',templet:'#goods',width:300}
+                    , {field: 'refund_type_desc', title: '退款类型', align: 'center',width:120}
+                    , {field: 'refund_way_desc', title: '退款路径', align: 'center',width:120}
+                    , {field: 'refund_amount', title: '退款金额', align: 'center',width:150}
+                    , {field: 'account_info', title: '到账信息',templet:'#account_info', align: 'center',width:300}
+                ]]
+                , page: true
+                , text: {none: '暂无数据！'}
+                ,response: {
+                    statusCode: 1 
+                  } 
+                , parseData: function (res) {
+                    return {
+                        "code": res.code,
+                        "msg": res.msg,
+                        "count": res.data.count,
+                        "data": res.data.lists,
+                    };
+                }
+                ,done: function(res, curr, count){
+                    // 解决操作栏因为内容过多换行问题
+                    $(".layui-table-main tr").each(function (index, val) {
+                        $($(".layui-table-fixed-l .layui-table-body tbody tr")[index]).height($(val).height());
+                        $($(".layui-table-fixed-r .layui-table-body tbody tr")[index]).height($(val).height());
+                    });
+                }
+            });
+        }
+
+        //导出
+        form.on('submit(export)', function(data){
+          var type = $(this).attr('data-type');
+          var field = data.field;
+          $.ajax({
+              url: '{:url("order.refund_log/exportFile")}?type='+ type,
+              type: 'get',
+              data: field,
+              dataType: 'json',
+              error: function() {
+                  layer.msg('导出超时，请稍后再试!');
+              },
+              success: function(res) {
+                  console.log(res.data)
+                  table.exportFile(res.data.exportTitle,res.data.exportData, res.data.exportExt, res.data.exportName);
+              },
+              timeout: 15000
+          });
+          layer.msg('导出中请耐心等待~');
+        });
+
+        $('.layui-btn.layuiadmin-btn-goods').on('click', function(){
+          var type = $(this).data('type');
+          active[type] ? active[type].call(this) : '';
+        });
+
+          //更新选项卡 统计数据
+          function updateTabNumber(field) {
+              like.ajax({
+                  url: '{:url("order.refund_log/totalCount")}',
+                  data: field,
+                  type: "GET",
+                  success: function (res) {
+                      if (res.code === 1) {
+                          $(".layui-tab-title li[data-type=0]").html("全部(" + res.data.all + ")");
+                          $(".layui-tab-title li[data-type=1]").html("退款中(" + res.data.wait_refund + ")");
+                          $(".layui-tab-title li[data-type=2]").html("退款成功(" + res.data.refund_success + ")");
+                          $(".layui-tab-title li[data-type=3]").html("退款失败(" + res.data.refund_fail + ")");
+                      }
+                  }
+              });
+          }
+    });
+</script>

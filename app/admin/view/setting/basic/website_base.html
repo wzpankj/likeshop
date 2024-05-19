@@ -1,0 +1,87 @@
+<div class="layui-form" lay-filter="">
+    <input type="hidden" name="type" value="base">
+    <!--商城名称-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">商城名称：</label>
+        <div class="layui-input-block">
+            <div class="layui-col-md4">
+                <input type="text" name="shop_name" lay-verify="required" lay-verType="tips" autocomplete="off"
+                       value="{$config.shop_name}" class="layui-input">
+                <div class=" layui-form-mid layui-word-aux">在需要显示商城名称的位置使用</div>
+            </div>
+        </div>
+    </div>
+    <!--移动端登录页logo-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">商城logo：</label>
+        <div class="layui-input-inline">
+            <div class="like-upload-image">
+                {if !empty($config.shop_logo)}
+                <div class="upload-image-div">
+                    <img src="{$config.file_url}{$config.shop_logo}" alt="img" style="background-color:#EEEEEE;height: 80px;width:auto">
+                    <input name="shop_logo" type="hidden" value="{$config.shop_logo}">
+                    <div class="del-upload-btn">x</div>
+                </div>
+                <div class="upload-image-elem" style="display:none;"><a class="add-upload-image shop_logo"> + 添加图片</a></div>
+                {else}
+                <div class="upload-image-elem"><a class="add-upload-image shop_logo"> + 添加图片</a></div>
+                {/if}
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <label class=" layui-form-mid layui-word-aux">管理后台登录之后的左上角logo。建议尺寸：宽152px*高42px。jpg，jpeg，png格式</label>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商城浏览器图标：</label>
+        <div class="layui-input-inline">
+            <div class="like-upload-image">
+                {if !empty($config.web_favicon)}
+                <div class="upload-image-div">
+                    <img src="{$config.file_url}{$config.web_favicon}" alt="img" style="background-color:#EEEEEE;height: 80px;width:auto">
+                    <input name="web_favicon" type="hidden" value="{$config.web_favicon}">
+                    <div class="del-upload-btn">x</div>
+                </div>
+                <div class="upload-image-elem" style="display:none;"><a class="add-upload-image web_favicon"> + 添加图片</a></div>
+                {else}
+                <div class="upload-image-elem"><a class="add-upload-image web_favicon"> + 添加图片</a></div>
+                {/if}
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <label class=" layui-form-mid layui-word-aux">商城在浏览器标签页显示的图标，favicon.ico文件</label>
+        </div>
+    </div>
+
+    <!--会员默认头像-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">会员默认头像：</label>
+        <div class="layui-input-inline">
+            <div class="like-upload-image">
+                {if !empty($config.user_image)}
+                <div class="upload-image-div">
+                    <img src="{$config.file_url}{$config.user_image}" alt="img" style="background-color:#EEEEEE;height: 80px;width:auto">
+                    <input name="user_image" type="hidden" value="{$config.user_image}">
+                    <div class="del-upload-btn">x</div>
+                </div>
+                <div class="upload-image-elem" style="display:none;"><a class="add-upload-image user_image"> + 添加图片</a></div>
+                {else}
+                <div class="upload-image-elem"><a class="add-upload-image user_image"> + 添加图片</a></div>
+                {/if}
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <label class=" layui-form-mid layui-word-aux">商城会员默认头像，建议尺寸：宽200px*高200px。jpg，jpeg，png格式</label>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-sm {$view_theme_color}" lay-submit lay-filter="setWebsite">确认
+            </button>
+        </div>
+    </div>
+</div>
+

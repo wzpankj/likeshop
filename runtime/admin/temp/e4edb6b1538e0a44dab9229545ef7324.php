@@ -1,0 +1,241 @@
+<?php /*a:2:{s:61:"D:\phpstudy_pro\WWW\dcweb\app\admin\view\user\user\lists.html";i:1676699056;s:53:"D:\phpstudy_pro\WWW\dcweb\app\admin\view\layout1.html";i:1676699056;}*/ ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title><?php echo url(); ?></title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/static/lib/layui/css/layui.css?v=<?php echo htmlentities($front_version); ?>">
+    <link rel="stylesheet" href="/static/admin/css/app.css?v=<?php echo htmlentities($front_version); ?>">
+    <link rel="stylesheet" href="/static/admin/css/like.css?v=<?php echo htmlentities($front_version); ?>">
+    <script src="/static/lib/layui/layui.js?v=<?php echo htmlentities($front_version); ?>"></script>
+    <script src="/static/admin/js/app.js"></script>
+</head>
+<body>
+<?php echo $js_code; ?>
+<script src="/static/admin/js/jquery.min.js"></script>
+<script src="/static/admin/js/function.js"></script>
+
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" style="height:auto !important;padding-top: 10px">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">用户信息：</label>
+                    <div class="layui-input-inline" style="width: 200px;">
+                        <input type="text" id="keyword" name="keyword" placeholder="请输入用户昵称/编号查询" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">注册时间:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="start_time" name="start_time"  autocomplete="off">
+                    </div>
+                    <div class="layui-input-inline" style="margin-right: 5px;width: 10px;">
+                        <label class="layui-form-mid">-</label>
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="end_time" name="end_time"  autocomplete="off">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-sm layuiadmin-btn-user <?php echo htmlentities($view_theme_color); ?>" lay-submit lay-filter="search">查询</button>
+                    <button class="layui-btn layui-btn-sm layuiadmin-btn-user layui-btn-primary " lay-submit lay-filter="clear-search">重置</button>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card-body">
+            <table id="like-table-lists" lay-filter="like-table-lists"></table>
+            <script type="text/html" id="user-info">
+                <img src="{{d.abs_avatar}}" style="height:80px;width: 80px;margin-right: 10px;" class="image-show">
+                <div class="layui-input-inline" style="text-align:left">
+                    <p>会员编号：{{d.sn}}</p>
+                    <p style="width: 220px;text-overflow:ellipsis;overflow: hidden">昵称：{{d.nickname}}</p>
+                </div>
+            </script>
+            <script type="text/html" id="table-operation">
+                <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="info">资料</a>
+                <a class="layui-btn layui-btn-normal layui-btn-sm" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-normal layui-btn-sm"  id="adjust_account" lay-event="adjust_account">账户调整</a>
+            </script>
+        </div>
+    </div>
+</div>
+<style>
+    .layui-table-cell {
+        height: auto;
+    }
+</style>
+<script>
+    layui.config({
+        version:"<?php echo htmlentities($front_version); ?>",
+        base: '/static/lib/' //静态资源所在路径
+    }).use(['table','laydate'], function(){
+        var $ = layui.$
+            ,form = layui.form
+            ,table = layui.table
+            , laydate = layui.laydate;
+
+        //监听搜索
+        form.on('submit(search)', function(data){
+            var field = data.field;
+            //执行重载
+            table.reload('like-table-lists', {
+                where: field,
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        });
+        //日期时间范围
+        laydate.render({
+            elem: '#start_time'
+            ,type: 'datetime'
+            ,trigger: 'click'
+        });
+
+        //日期时间范围
+        laydate.render({
+            elem: '#end_time'
+            ,type: 'datetime'
+            ,trigger: 'click'
+        });
+
+        //清空查询
+        form.on('submit(clear-search)', function(){
+            $('#keyword').val('');  //清空输入框
+            $('#start_time').val('');  //清空输入框
+            $('#end_time').val('');  //清空输入框
+            form.render('select');
+            //刷新列表
+            table.reload('like-table-lists', {
+                where: [],
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        });
+
+        like.tableLists("#like-table-lists", "<?php echo url(); ?>", [
+            {field: 'avatar', title: '会员信息',width: 360,align: 'center', toolbar: '#user-info'}
+            ,{field: 'user_money',width:100, title: '余额',align: 'center'}
+            ,{field: 'total_order_amount',width:100, title: '消费金额',align: 'center'}
+            ,{field: 'login_time', title: '最后登录时间',width: 160,align: 'center'}
+            ,{field: 'create_time', title: '注册时间',width: 160,align: 'center'}
+            ,{fixed: 'right', title: '操作', width: 340,toolbar: '#table-operation',align: 'center'}
+        ]);
+
+        //事件
+        var active = {
+            edit: function(obj) {
+                var id = obj.data.id;
+                layer.open({
+                    type: 2
+                    , title: '编辑用户'
+                    , content: '<?php echo url("user.user/edit"); ?>?id=' + id
+                    , area: ['90%', '90%']
+                    , btn: ['确定', '取消']
+                    , yes: function (index, layero) {
+                        var iframeWindow = window['layui-layer-iframe' + index]
+                            , submit = layero.find('iframe').contents().find('#edit-submit');
+                        //监听提交
+                        iframeWindow.layui.form.on('submit(edit-submit)', function (data) {
+                            var field = data.field;
+                            $.ajax({
+                                url: '<?php echo url("user.user/edit"); ?>',
+                                data: field,
+                                type: "post",
+                                success: function (res) {
+                                    if (res.code == 1) {
+                                        layui.layer.msg(res.msg, {
+                                            offset: '15px'
+                                            , icon: 1
+                                            , time: 1000
+                                        });
+                                        layer.close(index); //关闭弹层
+                                        table.reload('like-table-lists'); //数据刷新
+                                    } else {
+                                        layer.msg(res.msg, {
+                                            offset: '15px'
+                                            , icon: 2
+                                            , time: 1000
+                                        });
+                                    }
+                                }
+                            });
+                        });
+                        submit.trigger('click');
+                    },
+
+
+                })
+            },
+            info:function (obj) {
+                var id = obj.data.id;
+                layer.open({
+                    type: 2
+                    ,title: '用户资料'
+                    ,content: '<?php echo url("user.user/info"); ?>?id='+id
+                    ,area: ['90%','90%']
+                    ,btn: ['返回']
+                })
+            },
+            adjust_account:function (obj) {
+                var id = obj.data.id;
+                layer.open({
+                    type: 2
+                    , title: '余额调整'
+                    , content: '<?php echo url("user.user/adjustAccount"); ?>?id=' + id
+                    , area: ['90%', '90%']
+                    , btn: ['确定', '取消']
+                    , yes: function (index, layero) {
+                        var iframeWindow = window['layui-layer-iframe' + index]
+                            , submit = layero.find('iframe').contents().find('#edit-submit');
+                        //监听提交
+                        iframeWindow.layui.form.on('submit(edit-submit)', function (data) {
+                            var field = data.field;
+                            $.ajax({
+                                url: '<?php echo url("user.user/adjustAccount"); ?>',
+                                data: field,
+                                type: "post",
+                                success: function (res) {
+                                    if (res.code == 1) {
+                                        layui.layer.msg(res.msg, {
+                                            offset: '15px'
+                                            , icon: 1
+                                            , time: 1000
+                                        });
+                                        layer.close(index); //关闭弹层
+                                        table.reload('like-table-lists'); //数据刷新
+                                    } else {
+                                        layer.msg(res.msg, {
+                                            offset: '15px'
+                                            , icon: 2
+                                            , time: 1000
+                                        });
+                                    }
+                                }
+                            });
+                        });
+                        submit.trigger('click');
+                    },
+
+
+                })
+            }
+        }
+        like.eventClick(active);
+
+        $(document).on('click', '.image-show', function () {
+            var src = $(this).attr('src');
+            like.showImg(src,600);
+        });
+    });
+
+</script>
+
+</body>
+</html>

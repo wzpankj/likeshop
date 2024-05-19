@@ -1,0 +1,106 @@
+{layout name="layout2" /}
+<style>
+    .tips{
+        color: red;
+    }
+    .layui-form-label {
+        width: 100px;
+    }
+</style>
+
+<div class="layui-form" lay-filter="">
+    <input name="id" value="{$detail.id}" type="hidden">
+    <div class="layui-form-item" style="margin-top: 20px;">
+        <label class="layui-form-label"><span class="tips">*</span>打印机名称：</label>
+        <div class="layui-input-block">
+            <div class="layui-col-md4">
+                <input type="text" name="name" lay-verify="required" lay-verType="tips" placeholder="请输入名称" autocomplete="off" class="layui-input" value="{$detail.name}">
+            </div>
+        </div>
+    </div>
+    <div class="layui-tab">
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="tips">*</span>设备类型：</label>
+            <div class="layui-input-block">
+                <div class="layui-col-md4">
+                    <select name="printer_config_id"  placeholder="请选择" >
+                        {foreach $type_list as $type}
+                        <option value="{$type.id}" {if $type.id == $detail.printer_config_id}selected{/if}>{$type.name}</option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"><span class="tips">*</span>终端号：</label>
+        <div class="layui-input-block">
+            <div class="layui-col-md4">
+                <input type="text" disabled  name="machine_code" value="{$detail.machine_code}"  placeholder="请输入终端号" class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"><span class="tips">*</span>打印机秘钥：</label>
+        <div class="layui-input-block">
+            <div class="layui-col-md4">
+                <input type="text" disabled  name="private_key"  value="{$detail.private_key}"   placeholder="请输入秘钥" class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"><span class="tips">*</span>小票模板：</label>
+        <div class="layui-input-block">
+            <div class="layui-col-md4">
+                <select name="template_id"  placeholder="请选择" >
+                    {foreach $template_list as $template}
+                    <option value="{$template.id}" {if $template.id == $detail.template_id}selected{/if}>{$template.name}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"><span class="tips">*</span>打印联数：</label>
+        <div class="layui-input-block">
+            <div class="layui-col-md4">
+                <input type="radio" name="print_number" value="1" title="1联" {if $detail.print_number == 1}checked{/if}>
+                <input type="radio" name="print_number" value="2" title="2联" {if $detail.print_number == 2}checked{/if}>
+                <input type="radio" name="print_number" value="3" title="3联" {if $detail.print_number == 3}checked{/if}>
+                <input type="radio" name="print_number" value="4" title="4联" {if $detail.print_number == 4}checked{/if}>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"><span class="tips">*</span>自动打印：</label>
+        <div class="layui-input-block">
+            <div class="layui-col-md4">
+                <input type="radio" name="auto_print" value="0" title="关闭" {if condition="$detail.auto_print eq 0" }checked{/if}>
+                <input type="radio" name="auto_print" value="1" title="开启" {if condition="$detail.auto_print eq 1" }checked{/if}>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <span style="color: #a3a3a3;font-size: 9px">订单付款后自动打印订单，默认关闭</span>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"><span class="tips">*</span>打印状态</label>
+        <div class="layui-input-inline">
+            <input type="radio" name="status" value="1" title="启用" {if condition="$detail.status eq 1" }checked{/if}>
+            <input type="radio" name="status" value="0" title="停用" {if condition="$detail.status eq 0" }checked{/if}  >
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <span style="color: #a3a3a3;font-size: 9px">开启和关闭打印机的使用状态</span>
+    </div>
+    <div class="layui-form-item layui-hide">
+        <input type="button" lay-submit lay-filter="edit-submit" id="edit-submit" value="确认">
+    </div>
+</div>
+<script>
+    layui.use(['table', 'form', 'element'], function(){
+
+    });
+</script>

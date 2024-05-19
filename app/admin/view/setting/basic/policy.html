@@ -1,0 +1,110 @@
+{layout name="layout1" /}
+
+
+<div class="wrapper">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <div class="layui-collapse like-layui-collapse" lay-accordion="" style="border:1px dashed #c4c4c4">
+                <div class="layui-colla-item">
+                    <h2 class="layui-colla-title like-layui-colla-title" style="background-color: #fff">操作提示</h2>
+                    <div class="layui-colla-content layui-show">
+                        <p>*会员注册时的服务协议，在登录注册页面显示。</p>
+                        <p>*会员隐私政策协议，在登录注册页面显示。</p>
+                        <p>*售后保障协议，在退款申请页面显示。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form" lay-filter="">
+            <div class="layui-tab layui-tab-card">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">服务协议</li>
+                    <li>隐私政策</li>
+                    <li>售后保障</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <label class="layui-form-label" style="white-space: nowrap;">内容：</label>
+                        <div class="layui-input-block">
+                            <textarea name="service" id="service" lay-verify="content" class="field-content">{$config.service}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="layui-tab-item">
+                        <label class="layui-form-label" style="white-space: nowrap;">内容：</label>
+                        <div class="layui-input-block">
+                            <textarea name="privacy" id="privacy" lay-verify="content" class="field-content">{$config.privacy}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="layui-tab-item">
+                        <label class="layui-form-label" style="white-space: nowrap;">内容：</label>
+                        <div class="layui-input-block">
+                            <textarea name="after_sale" id="after_sale" lay-verify="content" class="field-content">{$config.after_sale}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn {$view_theme_color}" lay-submit lay-filter="addSubmit">确认</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.config({
+        base: "/static/lib/"
+    }).extend({
+        likeedit: "likeedit/likeedit"
+    }).use(["form", "likeedit"], function () {
+        var $ = layui.$
+            , form = layui.form
+            , likeedit = layui.likeedit;
+
+        //富文本上传图片
+        likeedit.set({
+            uploadImage: {
+                url: "{:url('file/lists')}",
+                type: 'post'
+            }
+        })
+        var likeedit_service = likeedit.build('service');
+        var likeedit_privacy = likeedit.build('privacy');
+        var likeedit_after_sale = likeedit.build('after_sale');
+        form.verify({
+            content: function () {
+                likeedit.sync(likeedit_service);
+                likeedit.sync(likeedit_privacy);
+                likeedit.sync(likeedit_after_sale);
+            }
+        });
+
+        form.on("submit(addSubmit)", function(data){
+            data.field['service'] = likeedit.getContent(likeedit_service);
+            data.field['privacy'] = likeedit.getContent(likeedit_privacy);
+            data.field['after_sale'] = likeedit.getContent(likeedit_after_sale);
+            like.ajax({
+                url: "{:url('setting.basic/setPolicy')}",
+                data: data.field,
+                type: "POST",
+                success:function(res) {
+                    if(res.code === 1) {
+                        layer.msg(res.msg, {
+                            offset: '15px'
+                            , icon: 1
+                            , time: 1500
+                        },function () {
+                            location.href = location.href;
+                        });
+                    }
+                }
+            });
+        });
+    });
+</script>

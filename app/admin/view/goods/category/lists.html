@@ -1,0 +1,192 @@
+{layout name="layout1" /}
+<!-- 样式 -->
+<style>
+  .layui-table-cell {
+    height: auto;
+  }
+</style>
+<!-- 操作提示 -->
+<div class="layui-fluid">
+  <div class="layui-card" style="margin-top: 15px;">
+    <!-- 功能按钮 -->
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+      <div class="layui-form-item">
+        <div class="layui-btn-container" style="display: inline-block;">
+          <div class="layui-btn-group">
+            <button class="layui-btn layui-btn-sm layui-btn-goods_category {$view_theme_color}"
+              id="goods_category-add">新增商品分类</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="layui-card-body">
+      <!-- 树形表格 -->
+      <table id="like-table-lists" lay-filter="like-table-lists"></table>
+      <!-- 分类图标 -->
+      <script type="text/html" id="image">
+        {{#  if(d.image != ''){ }}
+          <img src="{{d.image}}" style="height:80px;width:80px" class="image-show">
+        {{#  } }} 
+      </script>
+      <!-- 操作列 -->
+      <script type="text/html" id="table-operation">
+        <a class="layui-btn layui-btn-normal layui-btn-sm" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
+      </script>
+    </div>
+  </div>
+</div>
+
+<script>
+  layui.config({
+    version: "{$front_version}",
+    base: '/static/lib/'
+  }).extend({
+    treeTable: 'treetable/treeTable'
+  }).use(['layer', 'treeTable', 'form', 'element'], function () {
+    var $ = layui.jquery;
+    var layer = layui.layer;
+    var form = layui.form;
+    var treeTable = layui.treeTable;
+
+    // 渲染树形表格
+    var insTb = treeTable.render({
+      elem: '#like-table-lists',
+      tree: {
+        iconIndex: 0, // 折叠图标显示在第几列
+        childName: 'sub', // 设定children的字段名，pid形式数据不需要
+        getIcon: function (d) {  // 自定义图标
+          return '<i class="ew-tree-icon layui-icon layui-icon-spread-left "></i>';
+        }
+      },
+      cols: [
+        { field: 'name', title: '分类名称', width: 320},
+        { title: '分类图标', width: 120, align: 'center', templet: '#image'},
+        { field: 'sort', title: '排序', width: 80, align: 'center', event: 'tips', sort: true },
+        { fixed: 'right', width: 150, align: 'center', toolbar: '#table-operation', title: '操作'}
+      ],
+      reqData: function(data, callback) {
+        // 在这里写ajax请求，通过callback方法回调数据
+        like.ajax({
+          url:'{:url("goods.category/lists")}',
+          type:'get',
+          success:function (res) {
+            // 转json对象
+            jsonObj = JSON.parse(res.data);
+            if(res.code==0) callback(jsonObj);
+            else callback(res.msg);
+          }
+        })
+      }
+    });
+
+    // 新增商品分类
+    $('#goods_category-add').click(function () {
+      layer.open({
+        type: 2
+        , title: '新增商品分类'
+        , content: '{:url("goods.category/add")}'
+        , area: ['90%', '90%']
+        , btn: ['确认', '返回']
+        , btnAlign: 'c'
+        , yes: function (index, layero) {
+          var iframeWindow = window['layui-layer-iframe' + index]
+          , submitID = 'add-submit'
+          , submit = layero.find('iframe').contents().find('#' + submitID);
+
+          //监听提交
+          iframeWindow.layui.form.on('submit(' + submitID + ')', function (data) {
+            var field = data.field; 
+            console.log(data);
+            like.ajax({
+              url: '{:url("goods.category/add")}',
+              data: field,
+              type: "post",
+              success: function (res) {
+                if (res.code == 1) {
+                  layui.layer.msg(res.msg, {
+                    offset: '15px'
+                    , icon: 1
+                    , time: 1000
+                  });
+                  layer.close(index); //关闭弹层
+                  location.reload();//刷新
+                }
+              }
+            });
+          });
+          // 触发子窗口表单提交事件
+          submit.trigger('click');
+        }
+      })
+    });
+
+    // 监听行工具条事件
+    treeTable.on('tool(like-table-lists)', function (obj) {
+      var event = obj.event;
+      var id = obj.data.id;
+      if (event === 'del') {
+        layer.confirm('确定删除商品分类:' + '<span style="color: red">' + obj.data.name + '</span>', function (index) {
+          like.ajax({
+            url: '{:url("goods.category/del")}',
+            data: { id: id },
+            type: 'post',
+            dataType: 'json',
+            success: function (res) {
+              if (res.code === 1) {
+                layui.layer.msg(res.msg, {
+                  offset: '15px'
+                  , icon: 1
+                  , time: 1000
+                },function() {
+                  layer.close(index); //关闭弹层
+                  location.reload();//刷新
+                });
+              }
+            }
+          })
+        })
+      }
+
+      if (event === 'edit') {
+        layer.open({
+          type: 2
+          , title: '编辑商品分类'
+          , content: '{:url("goods.category/edit")}?id=' + obj.data.id
+          , area: ['90%', '90%']
+          , btn: ['确定', '取消']
+          , btnAlign: 'c'
+          , yes: function (index, layero) {
+            var iframeWindow = window['layui-layer-iframe' + index]
+              , submitID = 'edit-submit'
+              , submit = layero.find('iframe').contents().find('#' + submitID);
+
+            //监听提交
+            iframeWindow.layui.form.on('submit(' + submitID + ')', function (data) {
+              var field = data.field; //获取提交的字段
+              like.ajax({
+                url: '{:url("goods.category/edit")}',
+                data: field,
+                type: "post",
+                success: function (res) {
+                  if (res.code == 1) {
+                    layui.layer.msg(res.msg, {
+                      offset: '15px'
+                      , icon: 1
+                      , time: 1000
+                    }, function() {
+                      layer.close(index); //关闭弹层
+                      location.reload();//刷新
+                    });
+                  }
+                }
+              });
+            });
+            submit.trigger('click');
+          }
+        })
+      }
+    });
+  });
+</script>

@@ -1,0 +1,80 @@
+{layout name="layout1" /}
+<style>
+    .layui-table-cell {
+        height: auto;
+    }
+</style>
+<div class="wrapper">
+    <div class="layui-card">
+
+        <div class="layui-tab layui-tab-card" lay-filter="test">
+            <div class="layui-tab-content " style="padding: 0 15px;">
+                <div class="layui-tab-item layui-show">
+
+                    <table id="like-table-lists" lay-filter="like-table-lists"></table>
+
+                    <script type="text/html" id="table-operation">
+                        <a class="layui-btn layui-btn-normal layui-btn-sm" lay-event="edit">编辑</a>
+                    </script>
+
+                    <script type="text/html" id="image">
+                        <img src="{{d.image}}" style="height:80px;width: 80px" class="image-show">
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use(["table", "element"], function(){
+        var table   = layui.table;
+
+        like.tableLists('#like-table-lists','{:url()}',[
+            {field: 'id', width: 60, title: 'ID'}
+            ,{field: 'name', width: 200, align: 'center', title: '菜单名称'}
+            ,{field: 'image', width: 120,title: '菜单图片', templet: '#image'}
+            ,{field: 'describe',title: '菜单描述'}
+            ,{title: '操作', width: 180, align: 'center', fixed: 'right', toolbar: '#table-operation'}
+        ],'',true);
+
+
+        var active = {
+            edit:function(obj){
+                var id = obj.data.id;
+                layer.open({
+                    type: 2
+                    ,title: '编辑导航'
+                    ,content: '{:url("decoration.applet.home/edit")}?id='+id
+                    ,area: ['90%', '90%']
+                    ,btn: ['确定', '取消']
+                    ,yes: function(index, layero){
+                        var iframeWindow = window['layui-layer-iframe'+ index]
+                            ,submitID = 'editSubmit'
+                            ,submit = layero.find('iframe').contents().find('#'+ submitID);
+                        //监听提交
+                        iframeWindow.layui.form.on('submit('+ submitID +')', function(data){
+                            var field = data.field;
+                            like.ajax({
+                                url:'{:url("decoration.applet.home/edit")}',
+                                data:field,
+                                type:"post",
+                                success:function(res)
+                                {
+                                    if(res.code == 1) {
+                                        layui.layer.msg(res.msg);
+                                        layer.close(index);
+                                        table.reload('like-table-lists');
+                                    }
+                                }
+                            });
+                        });
+                        submit.trigger('click');
+                    }
+                });
+            },
+        };
+        like.eventClick(active);
+
+    })
+</script>

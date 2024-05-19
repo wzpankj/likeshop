@@ -1,0 +1,44 @@
+<div class="layui-form" lay-filter="">
+    <input type="hidden" name="type" value="shop">
+    <!--商家后台登录页主图-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">后台登录页主图：</label>
+        <div class="layui-input-inline">
+            <div class="like-upload-image">
+                {if !empty($config.shop_login_image)}
+                <div class="upload-image-div">
+                    <img src="{$config.file_url}{$config.shop_login_image}" alt="img" style="background-color:#EEEEEE;height: 80px;width:auto">
+                    <input name="shop_login_image" type="hidden" value="{$config.shop_login_image}">
+                    <div class="del-upload-btn">x</div>
+                </div>
+                <div class="upload-image-elem" style="display:none;"><a class="add-upload-image shop_login_image"> + 添加图片</a></div>
+                {else}
+                <div class="upload-image-elem"><a class="add-upload-image shop_login_image"> + 添加图片</a></div>
+                {/if}
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <label class=" layui-form-mid layui-word-aux">商家管理后台登录页主图，建议尺寸：宽500px*高500px。jpg，jpeg，png格式</label>
+        </div>
+    </div>
+
+    <!--商家后台登录页标题-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">商家后台登录页标题：</label>
+        <div class="layui-input-block">
+            <div class="layui-col-md4">
+                <input type="text" name="shop_login_title" lay-verify="required" lay-verType="tips" autocomplete="off"
+                       value="{$config.shop_login_title | default =''}" class="layui-input">
+                <div class=" layui-form-mid layui-word-aux">商家管理后台登录页表单的标题</div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-sm {$view_theme_color}" lay-submit lay-filter="setShop">确认
+            </button>
+        </div>
+    </div>
+</div>
+

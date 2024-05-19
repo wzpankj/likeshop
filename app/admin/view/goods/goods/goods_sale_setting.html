@@ -1,0 +1,21 @@
+<div class="layui-tab-item">
+    <!--商品排序-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品排序：</label>
+        <div class="layui-input-inline">
+            <input type="number" name="sort" autocomplete="off" class="layui-input"  value="">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <span style="color: #a3a3a3;font-size: 9px">排序权重，值越小越靠前</span>
+    </div>
+    <!--销售状态-->
+    <div class="layui-form-item">
+        <label class="layui-form-label"><span class="form-label-asterisk">*</span>销售状态：</label>
+        <div class="layui-input-block">
+            <input type="radio" name="status" value="1" title="上架销售" verify-msg="选择销售状态" lay-verify="status" >
+            <input type="radio" name="status" value="0" title="放入仓库" verify-msg="选择销售状态" lay-verify="status" checked>
+        </div>
+    </div>
+</div>

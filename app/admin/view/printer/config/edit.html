@@ -1,0 +1,45 @@
+{layout name="layout2" /}
+<style>
+    .tips{
+        color: red;
+    }
+    .layui-form-label {
+        width: 100px;
+    }
+</style>
+
+<div class="layui-form" lay-filter="">
+
+    <div class="layui-form-item" style="margin-top: 20px;">
+        <label class="layui-form-label"><span class="tips">*</span>设备类型：</label>
+        <div class="layui-input-block">
+            <div class="layui-col-md4">
+                <input type="text" name="name" lay-verify="required" lay-verType="tips" autocomplete="off" class="layui-input" value="易联云" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"><span class="tips">*</span>应用id：</label>
+        <div class="layui-input-block">
+            <div class="layui-col-md4">
+                <input type="text"  name="client_id" value="{if isset($detail.client_id)}{$detail.client_id}{/if}" lay-verify="required" class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"><span class="tips">*</span>apiKey：</label>
+        <div class="layui-input-block">
+            <div class="layui-col-md4">
+                <input type="text"  name="client_secret" value="{if isset($detail.client_secret)}{$detail.client_secret}{/if}" lay-verify="required" class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item layui-hide">
+        <input type="button" lay-submit lay-filter="edit-submit" id="edit-submit" value="确认">
+    </div>
+</div>
+<script>
+    layui.use(['table', 'form', 'element'], function(){
+
+    });
+</script>

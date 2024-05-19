@@ -1,0 +1,262 @@
+<?php /*a:2:{s:61:"D:\phpstudy_pro\WWW\dcweb\app\admin\view\shop\shop\lists.html";i:1676699056;s:53:"D:\phpstudy_pro\WWW\dcweb\app\admin\view\layout1.html";i:1676699056;}*/ ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title><?php echo url(); ?></title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/static/lib/layui/css/layui.css?v=<?php echo htmlentities($front_version); ?>">
+    <link rel="stylesheet" href="/static/admin/css/app.css?v=<?php echo htmlentities($front_version); ?>">
+    <link rel="stylesheet" href="/static/admin/css/like.css?v=<?php echo htmlentities($front_version); ?>">
+    <script src="/static/lib/layui/layui.js?v=<?php echo htmlentities($front_version); ?>"></script>
+    <script src="/static/admin/js/app.js"></script>
+</head>
+<body>
+<?php echo $js_code; ?>
+<script src="/static/admin/js/jquery.min.js"></script>
+<script src="/static/admin/js/function.js"></script>
+
+
+
+<style>
+    .layui-table-cell {height: auto; }
+</style>
+
+<div class="wrapper">
+    <div class="layui-card">
+        <!-- 操作提示 -->
+        <div class="layui-card-body">
+            <div class="layui-collapse" style="border:1px dashed #c4c4c4">
+                <div class="layui-colla-item">
+                    <h2 class="layui-colla-title like-layui-colla-title">操作提示</h2>
+                    <div class="layui-colla-content layui-show">
+                        <p>*查看并管理平台所有自营和入驻商家。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 搜索区域 -->
+        <div class="layui-card-body layui-form">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label for="name" class="layui-form-label">门店名称：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="name" name="name" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label for="name" class="layui-form-label">定价方式：</label>
+                    <div class="layui-input-block">
+                        <select name="pricing_policy" id="pricing_policy">
+                            <option value=""></option>
+                            <?php foreach($pricing_policy_list as $id => $name): ?>
+                            <option value="<?php echo htmlentities($id); ?>"><?php echo htmlentities($name); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <a class="layui-btn layui-btn-sm layui-btn-normal" lay-submit lay-filter="search">搜索</a>
+                    <a class="layui-btn layui-btn-sm layui-btn-primary" lay-submit lay-filter="clear-search">重置</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主体区域 -->
+        <div class="layui-card-body">
+            <button type="button" class="layui-btn layui-btn-normal layui-btn-sm layEvent" lay-event="add">新增门店</button>
+
+            <table id="like-table-lists" lay-filter="like-table-lists"></table>
+
+            <script type="text/html" id="table-operation">
+                <a class="layui-btn layui-btn-normal layui-btn-sm" lay-event="edit">编辑</a>
+                {{# if(d.status){ }}
+                <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="status">停业</a>
+                {{# }else{ }}
+                <a class="layui-btn layui-btn-normal layui-btn-sm" lay-event="status">营业</a>
+                {{# } }}
+                <a class="layui-btn layui-btn-normal layui-btn-sm" lay-event="admin">进入门店</a>
+                <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="account">账号管理</a>
+            </script>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    layui.use(["table", "form","laydate"], function(){
+        var table   = layui.table;
+        var form    = layui.form;
+        var laydate = layui.laydate;
+
+        like.tableLists("#like-table-lists", "<?php echo url(); ?>", [
+            {field:"shop_sn", width:160, title:"门店编号",}
+            ,{field:"name", width:250, title:"门店名称",}
+            ,{field:"pricing_policy_desc", width:100, align:"center",title:"定价"}
+            ,{field:"account", width:100, align:"center",title:"门店账号"}
+            ,{field:"status_desc", width:90, align:"center", title:"门店状态"}
+            ,{field:"create_time", width:160, align:"center", title:"创建时间"}
+            ,{title:"操作", width:400, align:"center", fixed:"right", toolbar:"#table-operation"}
+        ]);
+
+
+        var active = {
+            add: function() {
+                layer.open({
+                    type: 2
+                    ,title: "新增门店"
+                    ,content: "<?php echo url('shop.Shop/add'); ?>"
+                    ,area: ["90%", "90%"]
+                    ,btn: ["确定", "取消"]
+                    ,yes: function(index, layero){
+                        var iframeWindow = window["layui-layer-iframe" + index],
+                            submitID = 'add-submit',
+                            submit = layero.find('iframe').contents().find('#'+ submitID);
+                        iframeWindow.layui.form.on("submit("+submitID+")", function(data){
+                            like.ajax({
+                                url: "<?php echo url('shop.Shop/add'); ?>",
+                                data: data.field,
+                                type: "POST",
+                                success:function(res) {
+                                    if(res.code === 1) {
+                                        layui.layer.msg(res.msg);
+                                        layer.close(index);
+                                        table.reload("like-table-lists", {
+                                            where: {},
+                                            page: { cur: 1 }
+                                        });
+                                    }
+                                }
+                            });
+                        });
+                        submit.trigger("click");
+                    }
+                });
+            },
+            edit: function(obj) {
+                layer.open({
+                    type: 2
+                    ,title: "编辑门店"
+                    ,content: "<?php echo url('shop.Shop/edit'); ?>?id=" + obj.data.id
+                    ,area: ["90%", "90%"]
+                    ,btn: ["确定", "取消"]
+                    ,yes: function(index, layero){
+                        var iframeWindow = window["layui-layer-iframe" + index],
+                            submitID = 'edit-submit',
+                            submit = layero.find('iframe').contents().find('#'+ submitID);
+                        iframeWindow.layui.form.on("submit("+ submitID +")", function(data){
+                            data.field['id'] = obj.data.id;
+                            like.ajax({
+                                url: "<?php echo url('shop.Shop/edit'); ?>",
+                                data: data.field,
+                                type: "POST",
+                                success:function(res) {
+                                    if(res.code === 1) {
+                                        layui.layer.msg(res.msg);
+                                        layer.close(index);
+                                        table.reload("like-table-lists", {
+                                            where: {},
+                                            page: { cur: 1 }
+                                        });
+                                    }
+                                }
+                            });
+                        });
+                        submit.trigger("click");
+                    }
+                });
+            },
+            status: function(obj) {
+                var id = obj.data.id;
+                var update_status = 1;
+                var tips = '确定营业：'+'<span style="color: red">'+obj.data.name+'</span>';
+                if(obj.data.status){
+                    tips = '确定停业：'+'<span style="color: red">'+obj.data.name+'</span>';
+                    update_status = 0;
+                }
+                layer.confirm(tips, function(index){
+                    like.ajax({
+                        url:'<?php echo url("shop.shop/updateStatus"); ?>',
+                        data:{"id":id,"status":update_status},
+                        type:"post",
+                        success:function(res)
+                        {
+                            if(res.code === 1) {
+                                layui.layer.msg(res.msg, {offset:'15px', icon:1 ,time: 1000});
+                                table.reload('like-table-lists', { where: [] });
+                            } else {
+                                layui.layer.msg(res.msg, {offset:'15px', icon:2 ,time: 1000});
+                            }
+                        }
+                    });
+                })
+            },
+            admin:function(obj){
+                window.open ('<?php echo url("shop.shop/shopSso"); ?>?id='+obj.data.id);
+            },
+            account: function(obj) {
+                layer.open({
+                    type: 2
+                    ,title: "账号管理"
+                    ,content: "<?php echo url('shop.shop/account'); ?>?id=" + obj.data.id
+                    ,area: ["480px", "420px"]
+                    ,btn: ["确定", "取消"]
+                    ,yes: function(index, layero){
+                        var iframeWindow = window["layui-layer-iframe" + index],
+                            submitID = 'edit-submit',
+                            submit = layero.find('iframe').contents().find('#'+ submitID);
+                        iframeWindow.layui.form.on("submit("+ submitID +")", function(data){
+                            data.field['id'] = obj.data.admin_id;
+                            like.ajax({
+                                url: "<?php echo url('shop.shop/account'); ?>",
+                                data: data.field,
+                                type: "POST",
+                                success:function(res) {
+                                    if(res.code === 1) {
+                                        layui.layer.msg(res.msg);
+                                        layer.close(index);
+                                        table.reload("like-table-lists", {
+                                            where: {},
+                                            page: { cur: 1 }
+                                        });
+                                    }
+                                }
+                            });
+                        });
+                        submit.trigger("click");
+                    }
+                });
+            }
+        };
+        like.eventClick(active);
+
+
+        form.on("submit(search)", function(data){
+            table.reload("like-table-lists", {
+                where: data.field,
+                page: {
+                    curr: 1
+                }
+            });
+        });
+
+
+        form.on("submit(clear-search)", function(){
+            $("#name").val("");
+            $("#pricing_policy").val("");
+            form.render('select');
+            table.reload("like-table-lists", {
+                where: {},
+                page: {
+                    curr: 1
+                }
+            });
+        });
+
+    })
+</script>
+</body>
+</html>

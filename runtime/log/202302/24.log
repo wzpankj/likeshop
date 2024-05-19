@@ -1,0 +1,477 @@
+[2023-02-24T15:28:58+08:00][sql] CONNECT:[ UseTime:0.004000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:28:58+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.004000s ]
+[2023-02-24T15:28:58+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:28:58+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:28:58+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'return_stock'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:28:58+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:28:58+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 0  AND `pay_status` = 0  AND `cancel_time` < 1677223738 [ RunTime:0.001000s ]
+[2023-02-24T15:28:58+08:00][sql] SHOW FULL COLUMNS FROM `ls_order_goods` [ RunTime:0.001000s ]
+[2023-02-24T15:28:58+08:00][sql] SELECT * FROM `ls_order_goods` WHERE  `order_id` IN (12,14,15,16) [ RunTime:0.001000s ]
+[2023-02-24T15:28:58+08:00][sql] UPDATE `ls_order`  SET `order_status` = 4 , `update_time` = 1677223738  WHERE  `id` IN (12,14,15,16) [ RunTime:0.002000s ]
+[2023-02-24T15:28:58+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 2 [ RunTime:0.003000s ]
+[2023-02-24T15:28:58+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677223738  WHERE  `id` = 2 [ RunTime:0.003000s ]
+[2023-02-24T15:28:58+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T15:28:58+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677223738 ) [ RunTime:0.001001s ]
+[2023-02-24T15:28:58+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 3 [ RunTime:0.001000s ]
+[2023-02-24T15:28:58+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677223738  WHERE  `id` = 3 [ RunTime:0.002000s ]
+[2023-02-24T15:29:05+08:00][sql] CONNECT:[ UseTime:0.002001s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:29:05+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.003000s ]
+[2023-02-24T15:29:05+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:29:05+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:29:05+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'return_stock'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:29:05+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:29:05+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 0  AND `pay_status` = 0  AND `cancel_time` < 1677223745 [ RunTime:0.001000s ]
+[2023-02-24T15:29:05+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 2 [ RunTime:0.002000s ]
+[2023-02-24T15:29:05+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677223745  WHERE  `id` = 2 [ RunTime:0.002000s ]
+[2023-02-24T15:29:07+08:00][sql] CONNECT:[ UseTime:0.002001s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:29:07+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.004000s ]
+[2023-02-24T15:29:07+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:29:28+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:29:28+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.003001s ]
+[2023-02-24T15:29:28+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:30:03+08:00][sql] CONNECT:[ UseTime:0.003001s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:30:03+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.004000s ]
+[2023-02-24T15:30:03+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:30:03+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:30:03+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'return_stock'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:30:03+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:30:03+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 0  AND `pay_status` = 0  AND `cancel_time` < 1677223803 [ RunTime:0.000000s ]
+[2023-02-24T15:30:03+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 2 [ RunTime:0.002000s ]
+[2023-02-24T15:30:03+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677223803  WHERE  `id` = 2 [ RunTime:0.001000s ]
+[2023-02-24T15:30:05+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:30:05+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.004001s ]
+[2023-02-24T15:30:05+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:30:54+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:30:54+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.004000s ]
+[2023-02-24T15:30:54+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:31:07+08:00][sql] CONNECT:[ UseTime:0.002001s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:31:07+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.004000s ]
+[2023-02-24T15:31:07+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:31:07+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:31:07+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'return_stock'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T15:31:07+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:31:07+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 0  AND `pay_status` = 0  AND `cancel_time` < 1677223867 [ RunTime:0.001000s ]
+[2023-02-24T15:31:07+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 2 [ RunTime:0.002000s ]
+[2023-02-24T15:31:07+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677223867  WHERE  `id` = 2 [ RunTime:0.001000s ]
+[2023-02-24T15:32:25+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:32:25+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:32:25+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T15:32:25+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:32:25+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677223945 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:31+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:31+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:31+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:33:31+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:31+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224011 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:32+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:32+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001001s ]
+[2023-02-24T15:33:32+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T15:33:32+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:32+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224012 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:33+08:00][sql] CONNECT:[ UseTime:0.003001s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:33+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:33+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T15:33:33+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:33+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224013 ) [ RunTime:0.000000s ]
+[2023-02-24T15:33:33+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:33+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:33+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:33:33+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:33+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224013 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:34+08:00][sql] CONNECT:[ UseTime:0.002001s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:34+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.002000s ]
+[2023-02-24T15:33:34+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:33:34+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:34+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224014 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:34+08:00][sql] CONNECT:[ UseTime:0.003000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:34+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:34+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T15:33:34+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:34+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224014 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:35+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:35+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:35+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T15:33:35+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:35+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224015 ) [ RunTime:0.000000s ]
+[2023-02-24T15:33:35+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:35+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:35+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T15:33:35+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:35+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224015 ) [ RunTime:0.000000s ]
+[2023-02-24T15:33:36+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:36+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001001s ]
+[2023-02-24T15:33:36+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:33:36+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:36+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224016 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:37+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:37+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:37+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:33:37+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:37+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224017 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:37+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:37+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:37+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T15:33:37+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:37+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224017 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:38+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:38+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:38+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:33:38+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:38+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224018 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:38+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:38+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:38+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:33:38+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:38+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224018 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:39+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:39+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:39+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:33:39+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:39+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224019 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:39+08:00][sql] CONNECT:[ UseTime:0.003000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:39+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:39+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T15:33:39+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:39+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224019 ) [ RunTime:0.000000s ]
+[2023-02-24T15:33:40+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:40+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:40+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:33:40+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:40+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224020 ) [ RunTime:0.001001s ]
+[2023-02-24T15:33:40+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:40+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:40+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T15:33:40+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:40+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224020 ) [ RunTime:0.000000s ]
+[2023-02-24T15:33:41+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:41+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:41+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:33:41+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:41+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224021 ) [ RunTime:0.000000s ]
+[2023-02-24T15:33:41+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:41+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:41+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:33:41+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:41+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224021 ) [ RunTime:0.001001s ]
+[2023-02-24T15:33:42+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:42+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.002001s ]
+[2023-02-24T15:33:42+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:33:42+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:42+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224022 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:42+08:00][sql] CONNECT:[ UseTime:0.003001s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:42+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:42+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T15:33:42+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:42+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224022 ) [ RunTime:0.000000s ]
+[2023-02-24T15:33:43+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:43+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001001s ]
+[2023-02-24T15:33:43+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T15:33:43+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:43+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224023 ) [ RunTime:0.000000s ]
+[2023-02-24T15:33:43+08:00][sql] CONNECT:[ UseTime:0.002001s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:43+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:43+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:33:43+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:43+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224023 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:44+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:44+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.000000s ]
+[2023-02-24T15:33:44+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:33:44+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001001s ]
+[2023-02-24T15:33:44+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224024 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:45+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:45+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:45+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:33:45+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:45+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224025 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:45+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:45+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:45+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T15:33:45+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:45+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224025 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:46+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:46+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:46+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:33:46+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:46+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224026 ) [ RunTime:0.000000s ]
+[2023-02-24T15:33:46+08:00][sql] CONNECT:[ UseTime:0.003000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:46+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:46+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T15:33:46+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:46+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224026 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:47+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:47+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:47+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:33:47+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:33:47+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224027 ) [ RunTime:0.001000s ]
+[2023-02-24T15:33:47+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:33:47+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:33:47+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T15:33:47+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.000000s ]
+[2023-02-24T15:33:47+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224027 ) [ RunTime:0.000000s ]
+[2023-02-24T15:34:01+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:01+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.003001s ]
+[2023-02-24T15:34:01+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:34:01+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:34:01+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'return_stock'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:34:01+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001001s ]
+[2023-02-24T15:34:01+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 0  AND `pay_status` = 0  AND `cancel_time` < 1677224041 [ RunTime:0.001000s ]
+[2023-02-24T15:34:01+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 2 [ RunTime:0.002000s ]
+[2023-02-24T15:34:01+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677224041  WHERE  `id` = 2 [ RunTime:0.001000s ]
+[2023-02-24T15:34:01+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:01+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001001s ]
+[2023-02-24T15:34:01+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:34:02+08:00][sql] CONNECT:[ UseTime:0.003000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:02+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:02+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:34:03+08:00][sql] CONNECT:[ UseTime:0.002001s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:03+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.004000s ]
+[2023-02-24T15:34:03+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:34:05+08:00][sql] CONNECT:[ UseTime:0.003000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:05+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.004001s ]
+[2023-02-24T15:34:05+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:34:05+08:00][sql] CONNECT:[ UseTime:0.003000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:05+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:05+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:34:06+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:06+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:06+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:34:06+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:06+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.003000s ]
+[2023-02-24T15:34:06+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:34:06+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:06+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.004000s ]
+[2023-02-24T15:34:06+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:34:07+08:00][sql] CONNECT:[ UseTime:0.002001s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:07+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.004000s ]
+[2023-02-24T15:34:07+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:34:07+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:07+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:07+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:34:08+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:08+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:08+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:34:08+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:08+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.002000s ]
+[2023-02-24T15:34:08+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:34:09+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:09+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:09+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:34:09+08:00][sql] CONNECT:[ UseTime:0.002001s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:09+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:09+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:34:10+08:00][sql] CONNECT:[ UseTime:0.003000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:10+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.004001s ]
+[2023-02-24T15:34:10+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:34:10+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:10+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:10+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:34:10+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:10+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:10+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:34:11+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:11+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001001s ]
+[2023-02-24T15:34:11+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:34:11+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:11+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:11+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:34:12+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:12+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:12+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:34:12+08:00][sql] CONNECT:[ UseTime:0.002001s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:12+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:12+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:34:13+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:13+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:13+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:34:13+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:13+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:13+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001001s ]
+[2023-02-24T15:34:13+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:13+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.002001s ]
+[2023-02-24T15:34:13+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:34:14+08:00][sql] CONNECT:[ UseTime:0.002001s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:14+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:14+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:34:14+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:14+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:14+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:34:15+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:15+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.002000s ]
+[2023-02-24T15:34:15+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:34:15+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:15+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:15+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:34:16+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:16+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:16+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:34:16+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:16+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:16+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:34:16+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:16+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:16+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:34:17+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:17+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:17+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:34:17+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:17+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:17+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:34:18+08:00][sql] CONNECT:[ UseTime:0.002001s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:18+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:18+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:34:18+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:34:18+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:34:18+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:35:45+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:35:45+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:35:45+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:35:45+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:35:45+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'return_stock'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T15:35:45+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:35:45+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 0  AND `pay_status` = 0  AND `cancel_time` < 1677224145 [ RunTime:0.001000s ]
+[2023-02-24T15:35:45+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 2 [ RunTime:0.002000s ]
+[2023-02-24T15:35:45+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677224145  WHERE  `id` = 2 [ RunTime:0.002000s ]
+[2023-02-24T15:35:45+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:35:45+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224145 ) [ RunTime:0.000000s ]
+[2023-02-24T15:35:45+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 3 [ RunTime:0.002000s ]
+[2023-02-24T15:35:45+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677224145  WHERE  `id` = 3 [ RunTime:0.001000s ]
+[2023-02-24T15:35:56+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:35:56+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.002000s ]
+[2023-02-24T15:35:56+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T15:36:01+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:36:01+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.002000s ]
+[2023-02-24T15:36:01+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001001s ]
+[2023-02-24T15:36:01+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T15:36:01+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'return_stock'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:36:01+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T15:36:01+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 0  AND `pay_status` = 0  AND `cancel_time` < 1677224161 [ RunTime:0.001000s ]
+[2023-02-24T15:36:01+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 2 [ RunTime:0.001001s ]
+[2023-02-24T15:36:01+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677224161  WHERE  `id` = 2 [ RunTime:0.001000s ]
+[2023-02-24T15:36:01+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T15:36:01+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677224161 ) [ RunTime:0.000000s ]
+[2023-02-24T15:36:01+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 3 [ RunTime:0.002000s ]
+[2023-02-24T15:36:01+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677224161  WHERE  `id` = 3 [ RunTime:0.001000s ]
+[2023-02-24T15:36:02+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:36:02+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T15:36:02+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T15:36:03+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T15:36:03+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001001s ]
+[2023-02-24T15:36:03+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T16:11:44+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T16:11:44+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T16:11:44+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T16:11:44+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T16:11:44+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'return_stock'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T16:11:44+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T16:11:44+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 0  AND `pay_status` = 0  AND `cancel_time` < 1677226304 [ RunTime:0.000000s ]
+[2023-02-24T16:11:44+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 2 [ RunTime:0.002001s ]
+[2023-02-24T16:11:44+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677226304  WHERE  `id` = 2 [ RunTime:0.001000s ]
+[2023-02-24T16:11:44+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T16:11:44+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677226304 ) [ RunTime:0.001000s ]
+[2023-02-24T16:11:44+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 3 [ RunTime:0.001000s ]
+[2023-02-24T16:11:44+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677226304  WHERE  `id` = 3 [ RunTime:0.001000s ]
+[2023-02-24T16:11:46+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T16:11:46+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T16:11:46+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T16:11:50+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T16:11:50+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.004001s ]
+[2023-02-24T16:11:50+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T16:11:52+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T16:11:52+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T16:11:52+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T16:11:53+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T16:11:53+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T16:11:53+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T16:11:54+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T16:11:54+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.002000s ]
+[2023-02-24T16:11:54+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T16:11:55+08:00][sql] CONNECT:[ UseTime:0.002001s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T16:11:55+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T16:11:55+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T16:11:56+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T16:11:56+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.004000s ]
+[2023-02-24T16:11:56+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T16:11:57+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T16:11:57+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T16:11:57+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T16:11:59+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T16:11:59+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T16:11:59+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T16:16:01+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T16:16:01+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T16:16:01+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T16:16:01+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T16:16:01+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'return_stock'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T16:16:01+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T16:16:01+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 0  AND `pay_status` = 0  AND `cancel_time` < 1677226561 [ RunTime:0.000000s ]
+[2023-02-24T16:16:01+08:00][sql] SHOW FULL COLUMNS FROM `ls_order_goods` [ RunTime:0.001000s ]
+[2023-02-24T16:16:01+08:00][sql] SELECT * FROM `ls_order_goods` WHERE  `order_id` = 23 [ RunTime:0.000000s ]
+[2023-02-24T16:16:01+08:00][sql] UPDATE `ls_order`  SET `order_status` = 4 , `update_time` = 1677226561  WHERE  `id` = 23 [ RunTime:0.002000s ]
+[2023-02-24T16:16:01+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 2 [ RunTime:0.002000s ]
+[2023-02-24T16:16:01+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677226561  WHERE  `id` = 2 [ RunTime:0.001000s ]
+[2023-02-24T16:16:01+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T16:16:01+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677226561 ) [ RunTime:0.000000s ]
+[2023-02-24T16:16:01+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 3 [ RunTime:0.001000s ]
+[2023-02-24T16:16:01+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677226561  WHERE  `id` = 3 [ RunTime:0.001000s ]
+[2023-02-24T16:21:04+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T16:21:04+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.002000s ]
+[2023-02-24T16:21:04+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[2023-02-24T16:21:04+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001000s ]
+[2023-02-24T16:21:04+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'return_stock'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T16:21:04+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001001s ]
+[2023-02-24T16:21:04+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 0  AND `pay_status` = 0  AND `cancel_time` < 1677226864 [ RunTime:0.001000s ]
+[2023-02-24T16:21:04+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 2 [ RunTime:0.002000s ]
+[2023-02-24T16:21:04+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677226864  WHERE  `id` = 2 [ RunTime:0.001000s ]
+[2023-02-24T16:21:04+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T16:21:04+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677226864 ) [ RunTime:0.000000s ]
+[2023-02-24T16:21:04+08:00][sql] UPDATE `ls_order`  SET `order_status` = 3 , `update_time` = 1677226864 , `confirm_take_time` = 1677226864  WHERE  `id` = 22 [ RunTime:0.002000s ]
+[2023-02-24T16:21:04+08:00][sql] SELECT * FROM `ls_order` WHERE  `id` = 22 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T16:21:04+08:00][sql] SHOW FULL COLUMNS FROM `ls_user` [ RunTime:0.001001s ]
+[2023-02-24T16:21:04+08:00][sql] SELECT * FROM `ls_user` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T16:21:04+08:00][sql] UPDATE `ls_user`  SET `integral` = `integral` + 32 , `update_time` = 1677226864  WHERE  `id` = 1 [ RunTime:0.000000s ]
+[2023-02-24T16:21:04+08:00][sql] SHOW FULL COLUMNS FROM `ls_integral_log` [ RunTime:0.002000s ]
+[2023-02-24T16:21:04+08:00][sql] INSERT INTO `ls_integral_log` SET `user_id` = 1 , `order_id` = 22 , `create_time` = 1677226864 , `update_time` = 1677226864 , `num` = '32.00' , `remark` = '消费赠送积分' [ RunTime:0.002000s ]
+[2023-02-24T16:21:04+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 3 [ RunTime:0.002000s ]
+[2023-02-24T16:21:04+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677226864  WHERE  `id` = 3 [ RunTime:0.002000s ]
+[2023-02-24T16:23:40+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T16:23:40+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.002000s ]
+[2023-02-24T16:23:40+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T16:23:40+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.001001s ]
+[2023-02-24T16:23:40+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'return_stock'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T16:23:40+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.001000s ]
+[2023-02-24T16:23:40+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 0  AND `pay_status` = 0  AND `cancel_time` < 1677227020 [ RunTime:0.001000s ]
+[2023-02-24T16:23:40+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 2 [ RunTime:0.002000s ]
+[2023-02-24T16:23:40+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677227020  WHERE  `id` = 2 [ RunTime:0.002000s ]
+[2023-02-24T16:23:40+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T16:23:40+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677227020 ) [ RunTime:0.001000s ]
+[2023-02-24T16:23:40+08:00][sql] UPDATE `ls_order`  SET `order_status` = 3 , `update_time` = 1677227020 , `confirm_take_time` = 1677227020  WHERE  `id` = 21 [ RunTime:0.002000s ]
+[2023-02-24T16:23:40+08:00][sql] SELECT * FROM `ls_order` WHERE  `id` = 21 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T16:23:40+08:00][sql] SHOW FULL COLUMNS FROM `ls_user` [ RunTime:0.001000s ]
+[2023-02-24T16:23:40+08:00][sql] SELECT * FROM `ls_user` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T16:23:40+08:00][sql] UPDATE `ls_user`  SET `integral` = `integral` + 52 , `update_time` = 1677227020  WHERE  `id` = 1 [ RunTime:0.000000s ]
+[2023-02-24T16:23:40+08:00][sql] SHOW FULL COLUMNS FROM `ls_integral_log` [ RunTime:0.001000s ]
+[2023-02-24T16:23:40+08:00][sql] INSERT INTO `ls_integral_log` SET `user_id` = 1 , `order_id` = 21 , `create_time` = 1677227020 , `update_time` = 1677227020 , `num` = '52.00' , `remark` = '消费赠送积分' [ RunTime:0.001000s ]
+[2023-02-24T16:23:40+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 3 [ RunTime:0.001000s ]
+[2023-02-24T16:23:40+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677227020  WHERE  `id` = 3 [ RunTime:0.001000s ]
+[2023-02-24T16:29:08+08:00][sql] CONNECT:[ UseTime:0.003000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T16:29:08+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T16:29:08+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T16:29:08+08:00][sql] SHOW FULL COLUMNS FROM `ls_config` [ RunTime:0.003000s ]
+[2023-02-24T16:29:08+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'return_stock'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[2023-02-24T16:29:08+08:00][sql] SHOW FULL COLUMNS FROM `ls_order` [ RunTime:0.003000s ]
+[2023-02-24T16:29:08+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 0  AND `pay_status` = 0  AND `cancel_time` < 1677227348 [ RunTime:0.001001s ]
+[2023-02-24T16:29:08+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 2 [ RunTime:0.002000s ]
+[2023-02-24T16:29:08+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677227348  WHERE  `id` = 2 [ RunTime:0.003000s ]
+[2023-02-24T16:29:08+08:00][sql] SELECT `value` FROM `ls_config` WHERE  `type` = 'transaction'  AND `name` = 'order_auto_receipt_days'  AND `shop_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[2023-02-24T16:29:08+08:00][sql] SELECT `id`,`shop_id`,`order_sn`,`transaction_id`,`user_id`,`pay_way`,`pay_status`,`dining_type`,`order_status`,`order_type`,`order_source`,`take_code`,`pay_time`,`is_appoint`,`appoint_time`,`order_amount`,`discount_amount`,`total_amount`,`total_num`,`consignee`,`mobile`,`address_snap`,`delivery_amount`,`delivery_time`,`user_remark`,`confirm_take_time`,`coupon_id`,`cancel_time`,`order_remarks`,`refund_amount`,`surplus_refund_amount`,`refund_status`,`refund_time`,`create_time`,`update_time`,`del`,`integral_amount`,`use_integral`,`zhuohao` FROM `ls_order` WHERE  `order_status` = 2  AND `pay_status` = 1  AND `del` = 0  AND ( delivery_time+864 < 1677227348 ) [ RunTime:0.001000s ]
+[2023-02-24T16:29:08+08:00][sql] UPDATE `ls_dev_crontab`  SET `error` = ''  WHERE  `id` = 3 [ RunTime:0.003000s ]
+[2023-02-24T16:29:08+08:00][sql] UPDATE `ls_dev_crontab`  SET `last_time` = 1677227348  WHERE  `id` = 3 [ RunTime:0.002000s ]
+[2023-02-24T16:29:08+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T16:29:08+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.003000s ]
+[2023-02-24T16:29:08+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T16:29:09+08:00][sql] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T16:29:09+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T16:29:09+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[2023-02-24T16:29:10+08:00][sql] CONNECT:[ UseTime:0.002001s ] mysql:host=127.0.0.1;port=3306;dbname=cdiancan;charset=utf8mb4
+[2023-02-24T16:29:10+08:00][sql] SHOW FULL COLUMNS FROM `ls_dev_crontab` [ RunTime:0.001000s ]
+[2023-02-24T16:29:10+08:00][sql] SELECT * FROM `ls_dev_crontab` WHERE  `status` = 1 [ RunTime:0.001000s ]

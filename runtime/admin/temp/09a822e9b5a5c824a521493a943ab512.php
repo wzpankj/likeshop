@@ -1,0 +1,283 @@
+<?php /*a:2:{s:68:"D:\phpstudy_pro\WWW\dcweb\app\admin\view\decoration\ad\ad\lists.html";i:1676699055;s:53:"D:\phpstudy_pro\WWW\dcweb\app\admin\view\layout1.html";i:1676699056;}*/ ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title><?php echo url(); ?></title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/static/lib/layui/css/layui.css?v=<?php echo htmlentities($front_version); ?>">
+    <link rel="stylesheet" href="/static/admin/css/app.css?v=<?php echo htmlentities($front_version); ?>">
+    <link rel="stylesheet" href="/static/admin/css/like.css?v=<?php echo htmlentities($front_version); ?>">
+    <script src="/static/lib/layui/layui.js?v=<?php echo htmlentities($front_version); ?>"></script>
+    <script src="/static/admin/js/app.js"></script>
+</head>
+<body>
+<?php echo $js_code; ?>
+<script src="/static/admin/js/jquery.min.js"></script>
+<script src="/static/admin/js/function.js"></script>
+
+
+<style>
+    .layui-table-cell {
+        height: auto;
+    }
+</style>
+<div class="wrapper">
+    <div class="layui-card">
+        <!-- 操作提示 -->
+        <div class="layui-card-body">
+            <div class="layui-collapse" style="border:1px dashed #c4c4c4">
+                <div class="layui-colla-item">
+                    <h2 class="layui-colla-title like-layui-colla-title">操作提示</h2>
+                    <div class="layui-colla-content layui-show">
+                        <p>*平台管理广告信息，广告停用之后，商城不展示该广告。</p>
+                        <p>*广告可以自定义链接，用户点击广告后跳转到相应的页面。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 搜索区域 -->
+        <div class="layui-card-body layui-form">
+
+            <div class="layui-form-item">
+
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 90px">广告位：</label>
+                    <div class="layui-input-inline">
+                        <select name="ad_position_id" id="ad_position_id">
+                            <option value="">全部</option>
+                            <?php foreach($position_list as $value): ?>
+                            <option value='<?php echo htmlentities($value['id']); ?>'><?php echo htmlentities($value['name']); ?><option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="layui-inline">
+                    <a class="layui-btn layui-btn-sm layui-btn-normal" lay-submit lay-filter="search">搜索</a>
+                    <a class="layui-btn layui-btn-sm layui-btn-primary" lay-submit lay-filter="clear-search">重置</a>
+                    <a class="layui-btn layui-btn-sm layui-btn-primary" lay-submit lay-filter="export">导出</a>
+                </div>
+            </div>
+        </div>
+        <!-- 主体区域 -->
+        <div class="layui-tab layui-tab-card" lay-filter="like-tabs">
+
+            <div class="layui-tab-content" style="padding: 0 15px;">
+                <div style="margin-top: 10px">
+                    <button class="layui-btn layui-btn-sm layEvent <?php echo htmlentities($view_theme_color); ?>" lay-event="add">新增广告</button>
+                </div>
+                <table id="like-table-lists" lay-filter="like-table-lists"></table>
+
+                <script type="text/html" id="table-operation">
+                    <a class="layui-btn layui-btn-normal layui-btn-sm" lay-event="edit">编辑</a>
+                    {{# if(0 == d.status) { }}
+                    <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="status">启用</a>
+                    {{# }else{ }}
+                    <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="status">停用</a>
+                    {{# } }}
+                    <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
+                </script>
+                <script type="text/html" id="image">
+                    <img src="{{d.image}}" style="height:80px;width: 80px" class="image-show">
+                </script>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+    layui.use(["table", "element", "laydate"], function(){
+        var table   = layui.table;
+        var element = layui.element;
+        var form    = layui.form;
+        var terminal = 1;
+
+        like.tableLists('#like-table-lists','<?php echo url(); ?>',[
+            {field: 'id', width: 60, title: 'ID'}
+            ,{field: 'terminal_desc', width: 200, title: '渠道'}
+            ,{field: 'title', width: 260, align: 'center', title: '广告标题'}
+            ,{field: 'image', width: 120,title: '广告图片', templet: '#image'}
+            ,{field: 'ad_position_name', width: 140, align: 'center',title: '广告位'}
+            ,{field: 'link', width: 240, align: 'center', title: '广告链接'}
+            ,{field: 'status_desc', width: 120, align: 'center', title: '状态'}
+            ,{title: '操作', width: 250, align: 'center', fixed: 'right', toolbar: '#table-operation'}
+        ],{terminal:terminal});
+
+        element.on("tab(like-tabs)", function(){
+            terminal = this.getAttribute("lay-id");
+            table.reload("like-table-lists", {
+                where: {terminal: terminal},
+                page: { cur: 1 }
+            });
+        });
+
+        var active = {
+            add:function(obj){
+                layer.open({
+                    type: 2
+                    ,title: '新增广告'
+                    ,content: '<?php echo url("decoration.ad.ad/add"); ?>?terminal='+terminal
+                    ,area: ['90%', '90%']
+                    ,btn: ['确定', '取消']
+                    ,yes: function(index, layero){
+                        var iframeWindow = window['layui-layer-iframe'+ index]
+                            ,submitID = 'addSubmit'
+                            ,submit = layero.find('iframe').contents().find('#'+ submitID);
+                        //监听提交
+                        iframeWindow.layui.form.on('submit('+ submitID +')', function(data){
+                            var field = data.field;
+                                like.ajax({
+                                    url:'<?php echo url("decoration.ad.ad/add"); ?>',
+                                    data:field,
+                                    type:"post",
+                                    success:function(res)
+                                    {
+                                        if(res.code == 1) {
+                                            layui.layer.msg(res.msg);
+                                            layer.close(index);
+                                            table.reload('like-table-lists');
+                                        }
+                                    }
+                                });
+                        });
+                        submit.trigger('click');
+                    }
+                });
+
+            },
+            edit:function(obj){
+                var id = obj.data.id;
+                layer.open({
+                    type: 2
+                    ,title: '编辑广告'
+                    ,content: '<?php echo url("decoration.ad.ad/edit"); ?>?id='+id
+                    ,area: ['90%', '90%']
+                    ,btn: ['确定', '取消']
+                    ,yes: function(index, layero){
+                        var iframeWindow = window['layui-layer-iframe'+ index]
+                            ,submitID = 'editSubmit'
+                            ,submit = layero.find('iframe').contents().find('#'+ submitID);
+                        //监听提交
+                        iframeWindow.layui.form.on('submit('+ submitID +')', function(data){
+                            var field = data.field;
+                            like.ajax({
+                                url:'<?php echo url("decoration.ad.ad/edit"); ?>',
+                                data:field,
+                                type:"post",
+                                success:function(res)
+                                {
+                                    if(res.code == 1) {
+                                        layui.layer.msg(res.msg);
+                                        layer.close(index);
+                                        table.reload('like-table-lists');
+                                    }
+                                }
+                            });
+                        });
+                        submit.trigger('click');
+                    }
+                });
+            },
+            del: function(obj) {
+                layer.confirm("确定删除广告:<span style='color: red'>"+ obj.data.title +"</span>", function(index) {
+                    like.ajax({
+                        url: "<?php echo url('decoration.ad.ad/del'); ?>",
+                        data: {id: obj.data.id},
+                        type: "POST",
+                        success: function (res) {
+                            if (res.code === 1) {
+                                layui.layer.msg(res.msg);
+                                layer.close(index);
+                                table.reload('like-table-lists');
+                                obj.del();
+                            }
+                        }
+                    });
+                    layer.close(index);
+                })
+            },
+            status: function(obj) {
+                var status =   1 == obj.data.status ? 0 : 1;
+                if(status){
+                    var tips = "确定启用广告:<span style='color: red'>"+ obj.data.title +"</span>";
+                }else{
+                    var tips = "确定停用广告:<span style='color: red'>"+ obj.data.title +"</span>";
+                }
+                layer.confirm(tips, function(index) {
+                    like.ajax({
+                        url: "<?php echo url('decoration.ad.ad/status'); ?>",
+                        data: {id: obj.data.id,status:status},
+                        type: "POST",
+                        success: function (res) {
+                            if (res.code === 1) {
+                                layui.layer.msg(res.msg);
+                                layer.close(index);
+                                table.reload('like-table-lists');
+                            }
+                        }
+                    });
+                    layer.close(index);
+                })
+            },
+        };
+        like.eventClick(active);
+
+        form.on("submit(search)", function(data){
+            data.field.terminal = terminal;
+            table.reload("like-table-lists", {
+                where: data.field,
+                page: {
+                    curr: 1
+                }
+            });
+        });
+
+
+        form.on("submit(clear-search)", function(){
+            $("#ad_position_id").val("");
+            form.render("select");
+            table.reload("like-table-lists", {
+                where: {
+                    terminal:terminal
+                },
+                page: {
+                    curr: 1
+                }
+            });
+        });
+
+
+
+        // 导出
+        form.on('submit(export)', function(data){
+            var type = $(this).attr('data-type');
+            var field = data.field;
+            $.ajax({
+                url: '<?php echo url("decoration.ad.ad/exportFile"); ?>?type='+ type,
+                type: 'get',
+                data: field,
+                dataType: 'json',
+                error: function() {
+                    layer.msg('导出超时，请稍后再试!');
+                },
+                success: function(res) {
+                    console.log(res.data)
+                    table.exportFile(res.data.exportTitle,res.data.exportData, res.data.exportExt, res.data.exportName);
+                },
+                timeout: 15000
+            });
+            layer.msg('导出中请耐心等待~');
+        });
+
+
+    })
+</script>
+</body>
+</html>

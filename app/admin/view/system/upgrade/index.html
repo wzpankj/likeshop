@@ -1,0 +1,163 @@
+{layout name="layout1" /}
+
+<style>
+    .layui-table-cell { height: auto; }
+</style>
+
+<div class="wrapper">
+    <div class="layui-card layui-form">
+        <div class="layui-card-body">
+            <div class="layui-collapse like-layui-collapse" style="border:1px dashed #c4c4c4">
+                <div class="layui-colla-item">
+                    <h2 class="layui-colla-title like-layui-colla-title" style="background-color: #fff">操作提示</h2>
+                    <div class="layui-colla-content layui-show">
+                        <p>* 版本更新需要逐个版本更新，更新前请备份好系统和数据库，更新成功后需要强制刷新站点；</p>
+                        <p>* 系统没有做二次开发，可以直接选择在线更新功能；</p>
+                        <p>* 系统已做二次开发，进行了功能修改，请谨慎选择在线更新功能，推荐以更新包的形式手动更新；</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-card-body">
+            <table id="lists" lay-filter="lists"></table>
+            <script type="text/html" id="operation">
+                {{#  if(d.able_update === 1){ }}
+                    <a class="layui-btn layui-btn-sm layui-btn-normal" lay-event="update">一键更新</a>
+                {{#  } }}
+
+                <!--服务端更新包-->
+                {{#  if(d.package_link != "undefined" && d.package_link != null && d.package_link != ""){ }}
+                <a class="layui-btn layui-btn-sm layui-btn-primary" lay-event="download-server">下载服务端更新包</a>
+                {{#  } }}
+
+                <!--uniapp更新包-->
+                {{#  if(d.uniapp_package_link != "undefined" && d.uniapp_package_link != null && d.uniapp_package_link != ""){ }}
+                <a class="layui-btn layui-btn-sm layui-btn-primary" lay-event="download-uniapp">下载uniapp更新包</a>
+                {{#  } }}
+
+                <a class="layui-btn layui-btn-sm layui-btn-primary" lay-event="download-full">下载完整安装包</a>
+<!--                <a class="layui-btn layui-btn-sm layui-btn-primary" lay-event="updatePkg">下载更新包</a>-->
+<!--                <a class="layui-btn layui-btn-sm layui-btn-primary" lay-event="installPkg">下载完整安装包</a>-->
+            </script>
+
+            <!--更新内容-->
+            <script type="text/html" id="content">
+                {{#  layui.each(d.add, function(index, item){ }}
+                    <li>
+                        <span>{{ item }}</span>
+                    <li>
+                {{# }); }}
+
+                {{# layui.each(d.optimize, function(index, item){ }}
+                    <li>
+                        <span>{{ item }}</span>
+                    </li>
+                {{#  }); }}
+
+                {{#  layui.each(d.repair, function(index, item){ }}
+                    <li>
+                        <span>{{ item }}</span>
+                    </li>
+                {{#  }); }}
+            </script>
+
+            <!--版本-->
+            <script type="text/html" id="version">
+                {{#  if(d.new_version === 1){ }}
+                    <span style="color: red">new-</span><span>{{d.version_no}}</span>
+                {{#  } else { }}
+                    <span>{{d.version_no}}</span>
+                {{#  } }}
+                <p>{{d.version_str}}</p>
+            </script>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use(['table'], function () {
+        var table = layui.table;
+        var layer = layui.layer;
+        var $ = layui.$;
+
+
+        like.tableLists('#lists', '{:url("system.Upgrade/index")}', [
+            {field: 'create_time', title: '发布日期', width: 200, align: 'center'}
+            , {field: 'version_no', title: '版本', width: 200, align: 'center', templet: '#version'}
+            , {field: 'content', title: '版本内容', width: 300, align: 'center', templet: '#content'}
+            , {field: 'notice', title: '注意事项', width: 300, align: 'center'}
+            , {title: '操作', align: 'center', width: 600, toolbar: '#operation'}
+        ]);
+
+
+        // 监听行工具栏按钮
+        table.on('tool(lists)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+            // 一键更新
+            if (layEvent === 'update') {
+                layer.open({
+                    type: 2,
+                    title: '请选择操作',
+                    content: '{:url("system.upgrade/choosePage")}',
+                    area: ['60%', '60%'],
+                    success: function(layero, index){
+                        var iframe = window['layui-layer-iframe'+index];
+                        iframe.setVersionData(obj.data);
+                    }
+                });
+            }
+            //下载服务端更新包
+            if (layEvent === 'download-server') {
+                data.update_type = 2;
+                // 写入更新日志
+                $.ajax({
+                    url: '{:url("system.Upgrade/downloadPkg")}',
+                    type: 'post',
+                    data: data,
+                    success: function(res) {
+                        if(res.code == 1) {
+                            // 下载更新包
+                            window.location.href = res.data.line;
+                        }
+                    }
+                });
+
+            }
+            //下载uniapp更新包
+            if (layEvent === 'download-uniapp') {
+                data.update_type = 4;
+                // 写入更新日志
+                $.ajax({
+                    url: '{:url("system.Upgrade/downloadPkg")}',
+                    type: 'post',
+                    data: data,
+                    success: function(res) {
+                        if(res.code == 1) {
+                            // 下载更新包
+                            window.location.href = res.data.line;
+                        }
+                    }
+                });
+            }
+            // 下载完整安装包
+            if (layEvent === 'download-full') {
+                data.update_type = 6;
+                like.ajax({
+                    url: '{:url("system.Upgrade/downloadPkg")}',
+                    type: 'post',
+                    data: data,
+                    success: function(res) {
+                        if(res.code == 1) {
+                            // 下载更新包
+                            //this.parentElement.ownerDocument.defaultView.open(res.data.link);
+                            window.open(res.data.line);
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>

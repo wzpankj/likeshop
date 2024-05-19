@@ -1,0 +1,115 @@
+{layout name="layout2" /}
+<style>
+    .tips{
+        color: red;
+    }
+    .link{
+        display: none;
+    }
+    .size-tips-div{
+        display: none;
+    }
+    .category{
+        display: none;
+    }
+    .layui-form-label{
+        width: 90px;
+    }
+</style>
+<div class="layui-form" lay-filter="layuiadmin-form" id="layuiadmin-form" style="padding: 20px 30px 0 0;">
+    <input type="hidden" name="id" value="{$detail.id}">
+    <div class="layui-form-item">
+        <label class="layui-form-label"><span class="tips">*</span>广告位标题：</label>
+        <div class="layui-input-inline">
+            <input type="text" name="title" value="{$detail.title}" lay-vertype="tips" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label" style="white-space:nowrap;"><span class="tips">*</span>广告位：</label>
+        <div class="layui-input-inline">
+            <select name="ad_position_id" lay-filter="selectPid">
+                <option value="" ></option>
+                {foreach $position_list as $position }
+                <option value="{$position.id}" data-width="{$position.width}" data-height="{$position.height}" {if condition="$detail.ad_position_id eq $position.id"} selected {/if} >{$position.name}</option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label" style="white-space:nowrap;"><span class="tips">*</span>广告图片：</label>
+        <div class="layui-input-block">
+            <div class="like-upload-image">
+                {if $detail.image}
+                <div class="upload-image-div">
+                    <img src="{$detail.image}" alt="img">
+                    <input type="hidden" name="image" value="{$detail.image}">
+                    <div class="del-upload-btn">x</div>
+                </div>
+                <div class="upload-image-elem" style="display:none;"><a class="add-upload-image"> + 添加图片</a></div>
+                {else}
+                <div class="upload-image-elem"><a class="add-upload-image"> + 添加图片</a></div>
+                {/if}
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item size-tips-div">
+        <label class="layui-form-label"></label>
+        <span class="size-tips"></span>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label" style="white-space:nowrap;">广告链接：</label>
+        <div class="layui-input-inline">
+            <input type="text" name="link" autocomplete="off" class="layui-input" value="{$detail.link}">
+            <span style="margin-top: 10px;">请填写完整的自定义链接，http或者https开头的完整链接。</span>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label" style="white-space:nowrap;"><span class="tips">*</span>状态：</label>
+        <div class="layui-input-inline">
+            <input type="radio" name="status" value=0 title="停用" {if $detail.status == 0 }checked{/if}>
+            <input type="radio" name="status" value=1 title="启用" {if $detail.status == 1 }checked{/if}>
+        </div>
+    </div>
+    <div class="layui-form-item layui-hide">
+        <input type="button" lay-submit lay-filter="editSubmit" id="editSubmit" value="确认">
+    </div>
+</div>
+<script>
+    layui.use(["table", "laydate","form", "jquery"], function(){
+        var $ = layui.jquery;
+        var form = layui.form;
+
+        form.render();
+        // 监听 广告位置选择
+        form.on('select(selectPid)', function(data){
+            var id = data.value;
+            var elem = $(data.elem).find("option:selected");
+            if(id){
+                renderSize(elem);
+            }else{
+                $('.size-tips-div').hide();
+            }
+        });
+
+        function renderSize(elem) {
+            var width = elem.attr('data-width') ? elem.attr('data-width'): 0;
+            var height = elem.attr('data-height') ? elem.attr('data-height') : 0;
+            if(width || height){
+                $('.size-tips-div').show();
+                var html  = '建议上传广告图片宽*高, '+width+'px*'+height+'px';
+                $('.size-tips').text(html);
+            }
+        }
+
+
+        like.delUpload();
+        $(document).on("click", ".add-upload-image", function () {
+            like.imageUpload({
+                limit: 1,
+                field: "image",
+                that: $(this)
+            });
+        })
+
+    })
+</script>

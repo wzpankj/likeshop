@@ -1,0 +1,60 @@
+{layout name="layout1" /}
+<div class="wrapper">
+    <div class="layui-card">
+        <div class="layui-form">
+            <div class="layui-tab layui-tab-card">
+                <div class="layui-tab-content">
+                    <!-- 小程序分享标题 -->
+                    <div class="layui-form-item" style="margin-bottom:0;">
+                        <label for="mnp_share_title" class="layui-form-label">分享标题：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="mnp_share_title" name="mnp_share_title"
+                                   value="{$config.mnp.mnp_share_title}" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"></label>
+                        <div class="layui-input-block">
+                            <div class="layui-form-mid layui-word-aux">小程序商城分享页面时，显示的分享标题</div>
+                        </div>
+                    </div>
+                    <!-- 提交 -->
+                    <div class="layui-form-item" style="margin-top:30px">
+                        <div class="layui-input-block">
+                            <button class="layui-btn layui-bg-blue" lay-submit lay-filter="addSublime">提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    layui.use(['table', 'form'], function () {
+        var form = layui.form;
+
+        // 监听提交
+        form.on('submit(addSublime)', function (data) {
+            like.ajax({
+                url: '{:url("setting.Basic/setShare")}'
+                , data: data.field
+                , type: 'post'
+                , success: function (res) {
+                    if (res.code === 1) {
+                        layer.msg(res.msg, {
+                            offset: '15px'
+                            , icon: 1
+                            , time: 1000
+                        },function () {
+                            location.href = location.href;
+                        });
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>

@@ -1,0 +1,24 @@
+{layout name="layout2" /}
+
+<div class="wrapper">
+    <div class="layui-card" style="padding-top: 5px;">
+        <!-- 资产概况 -->
+        <h2 style="margin: 20px;">资产概况</h2>
+        <div style="margin: 0 20px">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-sm6 layui-col-md3" >
+                    <div class="layui-card" style="box-shadow:none;">
+                        <div class="layui-card-header" style="border-bottom:0;width: 300px;text-align: center;font-size: 18px;">累计充值金额/元</div>
+                        <div class="layui-card-body"><p style="width: 300px;text-align: center;font-size: 18px;">￥{$detail.total_recharge_amount}</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use(["table", "form", "laydate"], function(){
+
+    })
+</script>

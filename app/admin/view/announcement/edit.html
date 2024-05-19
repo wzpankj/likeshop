@@ -1,0 +1,77 @@
+{layout name="layout2" /}
+<div class="wrapper">
+    <div class="layui-card">
+        <div class="layui-card-header">门店公告</div>
+        <div class="layui-card-body" pad15>
+            <div class="layui-form" lay-filter="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">公告内容:</label>
+                    <div class="layui-input-block" style="width:80%">
+                        <textarea placeholder="请输入内容" id="content" lay-verify="content" name="content" class="layui-textarea" style="width: 300px;">{$detail.content}</textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn {$view_theme_color}" lay-submit lay-filter="submit">确定</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    layui.config({
+        version:"{$front_version}",
+        base: '/static/lib/'
+    }).extend({
+        likeedit: 'likeedit/likeedit'
+    }).use(['table', 'form', 'element', 'likeedit'], function() {
+        var form = layui.form
+            , likeedit = layui.likeedit;
+
+        likeedit.set({
+            uploadImage: {
+                url: '{:url("file/lists")}?type=10',
+                type: 'post'
+            }
+        });
+        var content = likeedit.build('content'); //建立编辑器
+        form.verify({
+
+            content: function() {
+                likeedit.sync(content)
+            }
+        })
+        // var likeedit_index = likeedit.build('content');
+        // form.verify({
+        //     content: function () {
+        //         likeedit.sync(likeedit_index)
+        //     }
+        // });
+
+
+        form.on('submit(submit)', function (data) {
+            like.ajax({
+                url: '{:url()}'
+                , data: data.field
+                , type: 'post'
+                , success: function (res) {
+                    if(res.code == 1) {
+                        layui.layer.msg(res.msg, {
+                            offset: '15px'
+                            , icon: 1
+                            , time: 1000
+                        }, function () {
+                            location.href = location.href;
+                        });
+                    }
+                }
+            });
+        });
+    });
+
+</script>

@@ -1,0 +1,45 @@
+{layout name="layout2" /}
+<style>
+    .tips{
+        color: red;
+    }
+    .layui-form-label {
+        width: 100px;
+    }
+</style>
+
+<div class="layui-form" lay-filter="">
+    <input name="id" value="{$detail.id}" type="hidden">
+    <div class="layui-form-item" style="margin-top: 20px;">
+        <label class="layui-form-label"><span class="tips">*</span>名称：</label>
+        <div class="layui-input-block">
+            <div class="layui-col-md4">
+                <input type="text" name="name" lay-verify="required" lay-verType="tips" placeholder="请输入名称" autocomplete="off" class="layui-input" value="{$detail.name}">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"><span class="tips">*</span>编号：</label>
+        <div class="layui-input-block">
+            <div class="layui-col-md4">
+                <input type="text" disabled  name="" value="{$detail.number}"  placeholder="请输入终端号" class="layui-input">
+            </div>
+            <span>不可修改</span>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="layui-form-item layui-hide">
+        <input type="button" lay-submit lay-filter="edit-submit" id="edit-submit" value="确认">
+    </div>
+</div>
+<script>
+    layui.use(['table', 'form', 'element'], function(){
+
+    });
+</script>
